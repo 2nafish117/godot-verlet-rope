@@ -1,0 +1,1210 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://DbgCamera/DbgCamera.tscn" type="PackedScene" id=1]
+[ext_resource path="res://VerletRope/CSVerletRope.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TestScenes/RopeWindNoise.tres" type="OpenSimplexNoise" id=3]
+
+[node name="Spatial" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.549228 )
+
+[node name="CSVerletRope" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -2.57015 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope"]
+aabb = AABB( -0.0478606, -3.81919, -0.192576, 5.65563, 3.84012, 0.239174 )
+
+[node name="CSVerletRope2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -5.88845 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope2"]
+aabb = AABB( -0.0609237, -3.89791, -0.171452, 5.68383, 3.92067, 0.197342 )
+
+[node name="CSVerletRope3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -9.61832 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope3"]
+aabb = AABB( -0.0592193, -3.81876, -0.161177, 5.6874, 3.85275, 0.176584 )
+
+[node name="CSVerletRope4" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -13.0138 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope4"]
+aabb = AABB( -0.0613327, -3.89326, -0.155976, 5.69038, 3.92487, 0.16777 )
+
+[node name="CSVerletRope5" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -16.9237 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope5"]
+aabb = AABB( -0.0641491, -3.97749, -0.152191, 5.69219, 4.00385, 0.161676 )
+
+[node name="CSVerletRope6" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -21.0395 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope6"]
+aabb = AABB( -0.0658696, -3.9621, -0.149637, 5.69231, 3.98622, 0.157472 )
+
+[node name="CSVerletRope7" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -24.9751 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope7"]
+aabb = AABB( -0.0667955, -3.97346, -0.147842, 5.69058, 4.00428, 0.154535 )
+
+[node name="CSVerletRope8" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -29.168 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope8"]
+aabb = AABB( -0.0638462, -4.04261, -0.146984, 5.68983, 4.07079, 0.152462 )
+
+[node name="CSVerletRope9" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -33.3095 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope9"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope9"]
+aabb = AABB( -0.0630313, -3.89452, -0.146517, 5.69303, 3.92459, 0.151252 )
+
+[node name="CSVerletRope10" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -37.6494 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope10"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope10"]
+aabb = AABB( -0.0628377, -3.79298, -0.145874, 5.69379, 3.82354, 0.15005 )
+
+[node name="CSVerletRope11" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -42.0833 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope11"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope11"]
+aabb = AABB( -0.064895, -3.80181, -0.145267, 5.69563, 3.82776, 0.149126 )
+
+[node name="CSVerletRope12" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -45.4016 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope12"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope12"]
+aabb = AABB( -0.0595883, -3.77915, -0.144933, 5.70989, 3.81574, 0.148217 )
+
+[node name="CSVerletRope13" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -49.1314 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope13"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope13"]
+aabb = AABB( -0.0616488, -3.83199, -0.144567, 5.69269, 3.865, 0.147707 )
+
+[node name="CSVerletRope14" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -52.5269 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope14"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope14"]
+aabb = AABB( -0.0644648, -3.94782, -0.144163, 5.69335, 3.97493, 0.147234 )
+
+[node name="CSVerletRope15" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -56.4369 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope15"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope15"]
+aabb = AABB( -0.0658839, -3.78284, -0.143994, 5.69666, 3.80631, 0.146916 )
+
+[node name="CSVerletRope16" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -60.5526 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope16"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope16"]
+aabb = AABB( -0.0602566, -3.69545, -0.143765, 5.72045, 3.73098, 0.146255 )
+
+[node name="CSVerletRope17" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -64.4882 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope17"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope17"]
+aabb = AABB( -0.0634672, -3.63676, -0.143552, 5.74613, 3.66619, 0.146015 )
+
+[node name="CSVerletRope18" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -68.6811 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope18"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope18"]
+aabb = AABB( -0.061405, -3.67359, -0.143348, 5.7407, 3.70712, 0.145585 )
+
+[node name="CSVerletRope19" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -72.8226 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope19"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope19"]
+aabb = AABB( -0.0545154, -3.56139, -0.143122, 5.93465, 3.60526, 0.144996 )
+
+[node name="CSVerletRope20" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50235, 2.38419e-07, -77.1625 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope20"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope20"]
+aabb = AABB( -0.0613092, -3.80919, -0.143007, 5.69254, 3.84292, 0.144995 )
+
+[node name="CSVerletRope21" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -2.57015 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope21"]
+aabb = AABB( -0.0128978, -3.86393, -0.209425, 5.58403, 3.86832, 0.278199 )
+
+[node name="CSVerletRope22" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -5.88845 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope22"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope22"]
+aabb = AABB( -0.0276172, -3.81988, -0.206298, 5.60969, 3.83035, 0.270574 )
+
+[node name="CSVerletRope23" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -9.61832 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope23"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope23"]
+aabb = AABB( -0.0394635, -3.92711, -0.202199, 5.63225, 3.94056, 0.258428 )
+
+[node name="CSVerletRope24" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -13.0138 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope24"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope24"]
+aabb = AABB( -0.0466129, -4.00004, -0.197048, 5.6468, 4.01786, 0.246135 )
+
+[node name="CSVerletRope25" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -16.9237 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope25"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope25"]
+aabb = AABB( -0.0531324, -3.96825, -0.191201, 5.65967, 3.98457, 0.234226 )
+
+[node name="CSVerletRope26" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -21.0395 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope26"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope26"]
+aabb = AABB( -0.0582471, -3.88234, -0.185636, 5.66955, 3.90103, 0.223577 )
+
+[node name="CSVerletRope27" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -24.9751 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope27"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope27"]
+aabb = AABB( -0.00737332, -0.56251, -0.172599, 5.60202, 0.781804, 0.176645 )
+
+[node name="CSVerletRope28" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -29.168 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope28"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope28"]
+aabb = AABB( -0.0721675, -3.7424, -0.175009, 5.68645, 3.77231, 0.204773 )
+
+[node name="CSVerletRope29" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -33.3095 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope29"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope29"]
+aabb = AABB( -0.0646882, -3.81208, -0.17164, 5.6806, 3.84278, 0.198255 )
+
+[node name="CSVerletRope30" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -37.6494 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope30"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope30"]
+aabb = AABB( -0.0656767, -3.84746, -0.167759, 5.68105, 3.88253, 0.191666 )
+
+[node name="CSVerletRope31" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -42.0833 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope31"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope31"]
+aabb = AABB( -0.0665456, -3.84084, -0.164308, 5.68069, 3.88007, 0.185979 )
+
+[node name="CSVerletRope32" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -45.4016 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope32"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope32"]
+aabb = AABB( -0.06667, -3.8846, -0.163489, 5.68302, 3.92121, 0.183613 )
+
+[node name="CSVerletRope33" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -49.1314 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope33"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope33"]
+aabb = AABB( -0.157932, -3.71541, -0.160864, 5.77207, 3.75657, 0.179597 )
+
+[node name="CSVerletRope34" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -52.5269 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope34"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope34"]
+aabb = AABB( -0.0676959, -3.80837, -0.161349, 5.68679, 3.84193, 0.179011 )
+
+[node name="CSVerletRope35" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -56.4369 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope35"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope35"]
+aabb = AABB( -0.0658852, -3.89702, -0.162034, 5.69128, 3.9152, 0.178033 )
+
+[node name="CSVerletRope36" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -60.5526 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope36"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope36"]
+aabb = AABB( -0.0649486, -3.96337, -0.160362, 5.68973, 3.98524, 0.175062 )
+
+[node name="CSVerletRope37" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -64.4882 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope37"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope37"]
+aabb = AABB( -0.0641053, -3.98209, -0.159402, 5.68976, 4.00669, 0.173026 )
+
+[node name="CSVerletRope38" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -68.6811 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope38"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope38"]
+aabb = AABB( -0.0570489, -3.78252, -0.159111, 5.69785, 3.82145, 0.170494 )
+
+[node name="CSVerletRope39" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -72.8226 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope39"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope39"]
+aabb = AABB( -0.054048, -3.64628, -0.157955, 5.83489, 3.68958, 0.168126 )
+
+[node name="CSVerletRope40" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7046, 2.38419e-07, -77.1625 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope40"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope40"]
+aabb = AABB( -0.0599781, -3.76151, -0.157169, 5.6997, 3.796, 0.167822 )
+
+[node name="CSVerletRope41" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -2.57015 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope41"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope41"]
+aabb = AABB( -0.00859324, -3.71201, -0.209149, 5.60742, 3.71778, 0.27838 )
+
+[node name="CSVerletRope42" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -5.88845 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope42"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope42"]
+aabb = AABB( -0.0188389, -3.7049, -0.205268, 5.65737, 3.71742, 0.271513 )
+
+[node name="CSVerletRope43" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -9.61832 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope43"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope43"]
+aabb = AABB( -0.0280582, -3.65763, -0.198985, 5.76033, 3.67918, 0.259389 )
+
+[node name="CSVerletRope44" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -13.0138 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope44"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope44"]
+aabb = AABB( -0.0349473, -3.83605, -0.19303, 5.64219, 3.86027, 0.248634 )
+
+[node name="CSVerletRope45" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -16.9237 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope45"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope45"]
+aabb = AABB( -0.0430362, -3.82256, -0.186462, 5.65651, 3.83915, 0.239117 )
+
+[node name="CSVerletRope46" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -21.0395 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope46"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope46"]
+aabb = AABB( -0.0481256, -3.81659, -0.180703, 5.66611, 3.83505, 0.228067 )
+
+[node name="CSVerletRope47" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -24.9751 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope47"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope47"]
+aabb = AABB( -0.0535619, -3.81646, -0.175249, 5.67301, 3.83391, 0.219656 )
+
+[node name="CSVerletRope48" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -29.168 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope48"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope48"]
+aabb = AABB( -0.0550575, -3.83096, -0.17213, 5.67816, 3.84942, 0.211215 )
+
+[node name="CSVerletRope49" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -33.3095 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope49"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope49"]
+aabb = AABB( -0.0588632, -3.81124, -0.168334, 5.6823, 3.82742, 0.204925 )
+
+[node name="CSVerletRope50" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -37.6494 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope50"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope50"]
+aabb = AABB( -0.31979, -3.56471, -0.162315, 5.93626, 3.60185, 0.195415 )
+
+[node name="CSVerletRope51" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -42.0833 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope51"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope51"]
+aabb = AABB( -0.062807, -3.8135, -0.159821, 5.67879, 3.85272, 0.190724 )
+
+[node name="CSVerletRope52" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -45.4016 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope52"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope52"]
+aabb = AABB( -0.0636499, -3.8038, -0.159472, 5.68287, 3.83826, 0.1885 )
+
+[node name="CSVerletRope53" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -49.1314 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope53"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope53"]
+aabb = AABB( -0.0628072, -3.91013, -0.159856, 5.68801, 3.9312, 0.186326 )
+
+[node name="CSVerletRope54" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -52.5269 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope54"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope54"]
+aabb = AABB( -0.0648862, -3.83519, -0.1574, 5.68595, 3.86753, 0.182979 )
+
+[node name="CSVerletRope55" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -56.4369 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope55"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope55"]
+aabb = AABB( -0.139713, -3.73769, -0.154868, 5.75574, 3.77893, 0.178908 )
+
+[node name="CSVerletRope56" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -60.5526 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope56"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope56"]
+aabb = AABB( -0.0662249, -3.78681, -0.15511, 5.6872, 3.82042, 0.177756 )
+
+[node name="CSVerletRope57" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -64.4882 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope57"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope57"]
+aabb = AABB( -0.0784922, -3.78336, -0.153934, 5.6983, 3.81943, 0.175332 )
+
+[node name="CSVerletRope58" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -68.6811 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope58"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope58"]
+aabb = AABB( -0.0668975, -3.84915, -0.15315, 5.68695, 3.88512, 0.173318 )
+
+[node name="CSVerletRope59" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -72.8226 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope59"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope59"]
+aabb = AABB( -0.0699327, -3.78523, -0.151861, 5.6873, 3.82563, 0.171005 )
+
+[node name="CSVerletRope60" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7062, 2.38419e-07, -77.1625 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope60"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope60"]
+aabb = AABB( -0.0645609, -3.93649, -0.153075, 5.69146, 3.9576, 0.1704 )
+
+[node name="CSVerletRope61" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -2.57015 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope61"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope61"]
+aabb = AABB( -0.00584783, -3.8491, -0.210032, 5.57247, 3.85061, 0.279785 )
+
+[node name="CSVerletRope62" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -5.88845 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope62"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope62"]
+aabb = AABB( -0.0132039, -3.80403, -0.209022, 5.58605, 3.81024, 0.277764 )
+
+[node name="CSVerletRope63" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -9.61832 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope63"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope63"]
+aabb = AABB( -0.0209241, -3.89187, -0.207594, 5.60047, 3.89777, 0.274286 )
+
+[node name="CSVerletRope64" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -13.0138 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope64"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope64"]
+aabb = AABB( -0.027233, -3.90978, -0.205784, 5.61244, 3.91632, 0.269937 )
+
+[node name="CSVerletRope65" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -16.9237 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope65"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope65"]
+aabb = AABB( -0.0334105, -3.90297, -0.203355, 5.62455, 3.91397, 0.263877 )
+
+[node name="CSVerletRope66" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -21.0395 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope66"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope66"]
+aabb = AABB( -0.0382906, -3.85294, -0.200577, 5.63497, 3.87085, 0.25637 )
+
+[node name="CSVerletRope67" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -24.9751 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope67"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope67"]
+aabb = AABB( -0.0415431, -3.80293, -0.197743, 5.64282, 3.82688, 0.248736 )
+
+[node name="CSVerletRope68" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -29.168 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope68"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope68"]
+aabb = AABB( -0.0441652, -3.66761, -0.194504, 5.75906, 3.6958, 0.240923 )
+
+[node name="CSVerletRope69" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -33.3095 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope69"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope69"]
+aabb = AABB( -0.0462453, -3.54554, -0.190852, 5.93811, 3.57636, 0.233414 )
+
+[node name="CSVerletRope70" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -37.6494 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope70"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope70"]
+aabb = AABB( -0.0503452, -3.63958, -0.188475, 5.76948, 3.66574, 0.22947 )
+
+[node name="CSVerletRope71" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -42.0833 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope71"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope71"]
+aabb = AABB( -0.0522207, -3.73695, -0.185804, 5.6805, 3.7639, 0.223846 )
+
+[node name="CSVerletRope72" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -45.4016 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope72"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope72"]
+aabb = AABB( -0.0516536, -3.72846, -0.183727, 5.71913, 3.76033, 0.218605 )
+
+[node name="CSVerletRope73" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -49.1314 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope73"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope73"]
+aabb = AABB( -0.0567118, -3.80295, -0.181611, 5.67439, 3.82372, 0.216998 )
+
+[node name="CSVerletRope74" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -52.5269 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope74"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope74"]
+aabb = AABB( -0.0538403, -3.71798, -0.179856, 5.71379, 3.74982, 0.211279 )
+
+[node name="CSVerletRope75" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -56.4369 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope75"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope75"]
+aabb = AABB( -0.0511833, -3.57863, -0.177333, 5.92051, 3.61745, 0.205136 )
+
+[node name="CSVerletRope76" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -60.5526 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope76"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope76"]
+aabb = AABB( -0.0525704, -3.76098, -0.176059, 5.71696, 3.79877, 0.202674 )
+
+[node name="CSVerletRope77" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -64.4882 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope77"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope77"]
+aabb = AABB( -0.0566713, -3.76809, -0.174466, 5.67913, 3.79911, 0.201407 )
+
+[node name="CSVerletRope78" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -68.6811 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope78"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope78"]
+aabb = AABB( -0.0624268, -3.90262, -0.171845, 5.68388, 3.9198, 0.199711 )
+
+[node name="CSVerletRope79" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -72.8226 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope79"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope79"]
+aabb = AABB( -0.00741196, -0.564508, -0.159757, 5.60262, 0.785135, 0.162877 )
+
+[node name="CSVerletRope80" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.6567, 2.38419e-07, -77.1625 )
+WindNoise = ExtResource( 3 )
+Draw = false
+RopeLength = 10.0
+AttachEndTo = NodePath("Position3D")
+SimulationParticles = 15
+ApplyWind = true
+
+[node name="Position3D" type="Position3D" parent="CSVerletRope80"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5614, 0, -0.140244 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="CSVerletRope80"]
+aabb = AABB( -0.167704, -3.71091, -0.164269, 5.78039, 3.75206, 0.189991 )
+
+[node name="DbgCamera" parent="." instance=ExtResource( 1 )]

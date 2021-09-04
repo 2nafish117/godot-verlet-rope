@@ -1,0 +1,431 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://DbgCamera/DbgCamera.tscn" type="PackedScene" id=1]
+[ext_resource path="res://VerletRope/GDVerletRope.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TestScenes/RopeWindNoise.tres" type="OpenSimplexNoise" id=3]
+
+[node name="Spatial" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.06924, 0, 0 )
+
+[node name="DbgCamera" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.12914 )
+
+[node name="GDVerletRope" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.99623, 0, 0 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope"]
+aabb = AABB( -0.0202364, -3.953, -0.0664957, 5.80058, 3.97908, 0.132991 )
+
+[node name="GDVerletRope2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.99623, 0, -3.76126 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope2"]
+aabb = AABB( -0.0440478, -3.89921, -0.0523171, 5.83286, 3.92332, 0.104634 )
+
+[node name="GDVerletRope3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.99623, 0, -7.41954 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope3"]
+aabb = AABB( -0.0552967, -3.81211, -0.0405154, 5.8456, 3.83453, 0.0810308 )
+
+[node name="GDVerletRope4" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.99623, 0, -11.5122 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope4"]
+aabb = AABB( -0.0608966, -3.86837, -0.031232, 5.85015, 3.89444, 0.0624641 )
+
+[node name="GDVerletRope5" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.99623, 0, -15.491 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope5"]
+aabb = AABB( -0.0641655, -3.79785, -0.0254775, 5.85179, 3.8279, 0.0509549 )
+
+[node name="GDVerletRope6" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.99623, 0, -18.9022 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope6"]
+aabb = AABB( -0.0649583, -3.82387, -0.0216088, 5.85508, 3.84811, 0.0432177 )
+
+[node name="GDVerletRope7" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.99623, 0, -22.502 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope7"]
+aabb = AABB( -0.0669438, -3.7476, -0.0190384, 5.85475, 3.77744, 0.0380769 )
+
+[node name="GDVerletRope8" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.99623, 0, -26.2633 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope8"]
+aabb = AABB( -0.0673421, -3.76926, -0.0165939, 5.85501, 3.79944, 0.0331878 )
+
+[node name="GDVerletRope9" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.99623, 0, -29.9216 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope9"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope9"]
+aabb = AABB( -0.0678629, -3.82825, -0.0148135, 5.85689, 3.85544, 0.0296271 )
+
+[node name="GDVerletRope10" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.99623, 0, -34.0142 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope10"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope10"]
+aabb = AABB( -0.0686315, -3.75117, -0.0133379, 5.85415, 3.78553, 0.0266759 )
+
+[node name="GDVerletRope11" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.63854, 0, -0.0332489 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope11"]
+aabb = AABB( -0.0213839, -4.06744, -0.0688167, 4.69539, 4.07897, 0.137633 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope11"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.49118, 0, 0 )
+
+[node name="GDVerletRope12" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.49819, 0, -4.71801 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope12"]
+aabb = AABB( -0.0506988, -3.91412, -0.0588157, 5.447, 3.93109, 0.117631 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope12"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.36235, 0, 0 )
+
+[node name="GDVerletRope13" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.37306, 0, -7.41954 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope13"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope13"]
+aabb = AABB( -0.0581897, -3.72548, -0.0511765, 5.82315, 3.75097, 0.102353 )
+
+[node name="GDVerletRope14" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.37306, 0, -11.5122 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope14"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope14"]
+aabb = AABB( -0.0610357, -3.89399, -0.0449902, 5.83634, 3.91301, 0.0899805 )
+
+[node name="GDVerletRope15" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.37306, 0, -15.491 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope15"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope15"]
+aabb = AABB( -0.0631889, -3.828, -0.0386101, 5.84399, 3.84762, 0.0772202 )
+
+[node name="GDVerletRope16" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.37306, 0, -18.9022 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope16"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope16"]
+aabb = AABB( -0.0641139, -3.83214, -0.0340257, 5.84784, 3.85244, 0.0680514 )
+
+[node name="GDVerletRope17" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.37306, 0, -22.502 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope17"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope17"]
+aabb = AABB( -0.0636048, -3.80355, -0.0304499, 5.85017, 3.8277, 0.0608998 )
+
+[node name="GDVerletRope18" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.37306, 0, -26.2633 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope18"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope18"]
+aabb = AABB( -0.0667394, -3.822, -0.0258821, 5.85205, 3.84524, 0.0517643 )
+
+[node name="GDVerletRope19" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.37306, 0, -29.9216 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope19"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope19"]
+aabb = AABB( -0.0673959, -3.8777, -0.0208164, 5.84712, 3.91545, 0.0416329 )
+
+[node name="GDVerletRope20" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.37306, 0, -34.0142 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope20"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope20"]
+aabb = AABB( -0.0682404, -3.75061, -0.0206433, 5.85448, 3.77649, 0.0412866 )
+
+[node name="GDVerletRope21" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0275, 0, -0.0332489 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope21"]
+aabb = AABB( -0.0093346, -3.97, -0.0691875, 4.81886, 3.9751, 0.138375 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.49118, 0, 0 )
+
+[node name="GDVerletRope22" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1679, 0, -4.71801 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope22"]
+aabb = AABB( -0.0267485, -3.86429, -0.0631603, 5.42656, 3.87826, 0.126321 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope22"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.36235, 0, 0 )
+
+[node name="GDVerletRope23" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.293, 0, -7.41954 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope23"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope23"]
+aabb = AABB( -0.0345731, -3.88334, -0.0589924, 5.80547, 3.89832, 0.117985 )
+
+[node name="GDVerletRope24" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.293, 0, -11.5122 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope24"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope24"]
+aabb = AABB( -0.0439965, -3.87453, -0.0525487, 5.82208, 3.89234, 0.105097 )
+
+[node name="GDVerletRope25" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.293, 0, -15.491 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope25"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope25"]
+aabb = AABB( -0.0499613, -3.80451, -0.0461982, 5.8334, 3.82093, 0.0923965 )
+
+[node name="GDVerletRope26" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.293, 0, -18.9022 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope26"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope26"]
+aabb = AABB( -0.0553362, -3.73994, -0.0428945, 5.8323, 3.77817, 0.0857891 )
+
+[node name="GDVerletRope27" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.293, 0, -22.502 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope27"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope27"]
+aabb = AABB( -0.0580044, -3.77772, -0.0383688, 5.84288, 3.80208, 0.0767375 )
+
+[node name="GDVerletRope28" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.293, 0, -26.2633 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope28"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope28"]
+aabb = AABB( -0.0606314, -3.72526, -0.0347933, 5.84394, 3.75644, 0.0695867 )
+
+[node name="GDVerletRope29" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.293, 0, -29.9216 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope29"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope29"]
+aabb = AABB( -0.0613953, -3.79942, -0.0312103, 5.84916, 3.82115, 0.0624206 )
+
+[node name="GDVerletRope30" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.293, 0, -34.0142 )
+attach_end_to = NodePath("Position3D")
+rope_length = 10.0
+simulation_particles = 15
+apply_wind = true
+wind_noise = ExtResource( 3 )
+
+[node name="Position3D" type="Position3D" parent="GDVerletRope30"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72457, 0, 0 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="GDVerletRope30"]
+aabb = AABB( -0.0616445, -3.86782, -0.0277886, 5.85096, 3.88654, 0.0555772 )
