@@ -12,11 +12,11 @@ A fast implementation of verlet integration based rope pysics, similar to the on
 # Featues
 1. Verlet integration based particle simulation
 2. ImmediateGeometry to draw the rope
-3. Set number of particles, length, width and iterations for the rope.
-4. PreprocessIterations processes the rope in _ready so it doesnt start out in a non rest position, a value of 20 is good enough, a higher value makes the scene load time longer.
-5. Always faces the current camera in play mode
-6. Automatically tesselates some sharp parts of the rope using Catmull rom splines to keep the rope looking smooth (use the SubdivLodDistance to change beyond what distance this tesselation stops).
-7. Add a visibility notifier as a child to enable and disable drawing of the rope when the current camera is not viewing the rope. The rope automatically grows and shrinks the aabb, so you dont have to set the extents of the VisibilityNotifier yourself).
-8. Enable/disable/configure forces like gravity, wind, air drag.
-9. Rudimentary collisions using raycasts (only tests collisions if a collider enters its aabb), you need to enable this with ApplyCollisions.
-
+3. Full rope simulation within the editor, set Simulate to off to stop the simulation. 
+4. Set number of particles, length, width and iterations for the rope.
+5. PreprocessIterations processes the rope in _ready so it doesnt start out in a non rest position, a value of 20 is good enough, a higher value makes the scene load time longer.
+6. Always faces the current camera in play mode
+7. Automatically tesselates some sharp parts of the rope using Catmull rom splines to keep the rope looking smooth (use the SubdivLodDistance to change beyond what distance this tesselation stops).
+8. Add a visibility notifier as a child to enable and disable drawing of the rope when the current camera is not viewing the rope. The rope automatically grows and shrinks the aabb, so you dont have to set the extents of the VisibilityNotifier yourself).
+9. Enable/disable/configure forces like gravity, wind, air drag.
+10. Rudimentary collisions using raycasts (only tests collisions if a collider enters its aabb), you need to enable this with ApplyCollisions.
