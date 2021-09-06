@@ -138,7 +138,6 @@ public void AddParticleAtEnd(bool AdjustLength) {
 
 // unused func, draws simple quads from one particle to next
 private void DrawLinearCurve() {
-	Clear();
 	Begin(Mesh.PrimitiveType.Triangles);
 	for(int i = 0;i < SimulationParticles - 1; ++i) {
 		Vector3 currPos = _particleData[i].PosCurr - GlobalTransform.origin;
@@ -176,7 +175,6 @@ private static void CatmullInterpolate(Vector3 p0, Vector3 p1, Vector3 p2, Vecto
 }
 
 private void DrawCatmullCurve() {
-	Clear();
 	Begin(Mesh.PrimitiveType.Triangles);
 	
 	// do drawing
@@ -494,10 +492,13 @@ public override void _PhysicsProcess(float delta) {
 	// drawing
 	if(Draw) {
 		CalculateRopeOrientationWithCamera();
+		Clear();
+		// @HACK: rope doesnt draw from origin to attach_end_to correctly if rotated
+		// calling to_local() in the drawing code is too slow
+		GlobalTransform = new Transform(Basis.Identity, GlobalTransform.origin);
 		// DrawLinearCurve();
 		// DrawRopeParticles();
 		DrawCatmullCurve();
-
 	}
 }
 

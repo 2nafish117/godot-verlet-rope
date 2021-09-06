@@ -112,7 +112,6 @@ func add_particle_at_end(adjust_length: bool) -> void:
 
 # unused func draws simple lines between particles
 func _draw_linear_curve():
-	clear()
 	begin(Mesh.PRIMITIVE_TRIANGLES)
 	for i in range(simulation_particles - 1):
 		var curr_pos: Vector3 = particle_data.pos_curr[i] - global_transform.origin
@@ -156,7 +155,6 @@ func _draw_interval(data: PoolVector3Array, camera_position: Vector3, step: floa
 	pass
 
 func _draw_catmull_curve_baked() -> void:
-	clear()
 	begin(Mesh.PRIMITIVE_TRIANGLES)
 	
 	# do drawing
@@ -200,7 +198,6 @@ func _draw_catmull_curve_baked() -> void:
 
 # unused func use catmull_curve_baked instead, it is faster
 func _draw_catmull_curve() -> void:
-	clear()
 	begin(Mesh.PRIMITIVE_TRIANGLES)
 	
 	# do drawing
@@ -463,6 +460,10 @@ func _physics_process(delta: float) -> void:
 	# drawing
 	if draw:
 		_calculate_rope_orientation_with_camera()
+		# @HACK: rope doesnt draw from origin to attach_end_to correctly if rotated
+		# calling to_local() in the drawing code is too slow
+		global_transform.basis = Basis.IDENTITY
+		clear()
 		_draw_catmull_curve_baked()
 		#_draw_catmull_curve()
 		#_draw_linear_curve()
