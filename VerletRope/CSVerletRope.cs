@@ -75,6 +75,7 @@ private int simulationParticles = 10;
 [Export(PropertyHint.Range, "0.0, 1.5")] public float Stiffness = 0.9f;
 [Export] public bool Simulate = true;
 [Export] public bool Draw = true;
+[Export] public float SubdivLodDistance = 15.0f;
 
 [Export] public bool ApplyGravity = true;
 [Export] public Vector3 Gravity = Vector3.Down * 9.8f;
@@ -135,6 +136,7 @@ public void AddParticleAtEnd(bool AdjustLength) {
 	}
 }
 
+// unused func, draws simple quads from one particle to next
 private void DrawLinearCurve() {
 	Clear();
 	Begin(Mesh.PrimitiveType.Triangles);
@@ -190,8 +192,8 @@ private void DrawCatmullCurve() {
 		
 		float ropeDrawSubdivs = 1.0f;
 		var camDistParticle = camPos - p1;
-		// dont subdivide if farther than 12.0 units from camera
-		if(camDistParticle.LengthSquared() <= 144.0f) {
+		// dont subdivide if farther than SubdivLodDistance units from camera
+		if(camDistParticle.LengthSquared() <= SubdivLodDistance * SubdivLodDistance) {
 			float tangentDots = _particleData[i].Tangent.Dot(_particleData[i + 1].Tangent);
 			if(tangentDots >= COS_5_DEG) {
 				ropeDrawSubdivs = 1.0f; // 0 subdivisions
@@ -297,11 +299,13 @@ private void CreateRope() {
 	CalculateRopeOrientationWithCamera();
 }
 
+// unused func, maybe useful in code?
 private void DestroyRope() {
 	Array.Resize<RopeParticleData>(ref _particleData, 0);
 	SimulationParticles = 0;
 }
 
+// unused func, for debugging only
 private void DrawRopeParticles() {
 	Begin(Mesh.PrimitiveType.Lines);
 	for(int i = 0;i < SimulationParticles; ++i) {
@@ -491,6 +495,7 @@ public override void _PhysicsProcess(float delta) {
 	if(Draw) {
 		CalculateRopeOrientationWithCamera();
 		// DrawLinearCurve();
+		// DrawRopeParticles();
 		DrawCatmullCurve();
 
 	}

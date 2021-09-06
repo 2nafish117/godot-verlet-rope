@@ -11,12 +11,6 @@ const RopeParticleData = RopeUtil.RopeParticleData
 # https://qroph.github.io/2018/07/30/smooth-paths-using-catmull-rom-splines.html
 # https://toqoz.fyi/game-rope.html
 
-# usage info:
-# set the material flags to be unshaded
-# cull mode can be disabled ?
-# use uv1 to scale the texture
-# use vertex color as albedo to set rope to solid color (optional)
-
 const INV_SQRT_2: float = 1.0 / sqrt(2.0)
 const COS_5_DEG: float = cos(deg2rad(5))
 const COS_10_DEG: float = cos(deg2rad(10))
@@ -91,6 +85,7 @@ onready var space_state = get_world().direct_space_state
 func get_segment_length() -> float:
 	return rope_length / (simulation_particles - 1)
 
+# unused func, maybe useful in code?
 func add_particle_at_end(adjust_length: bool) -> void:
 	var _pos_prev: Vector3 = particle_data.pos_prev[-1] + Vector3.BACK * 0.01;
 	var _pos_curr: Vector3 = particle_data.pos_curr[-1] + Vector3.BACK * 0.01;
@@ -115,6 +110,7 @@ func add_particle_at_end(adjust_length: bool) -> void:
 	if adjust_length:
 		rope_length += get_segment_length()
 
+# unused func draws simple lines between particles
 func _draw_linear_curve():
 	clear()
 	begin(Mesh.PRIMITIVE_TRIANGLES)
@@ -134,7 +130,6 @@ func _draw_linear_curve():
 			0.0, 1.0,
 			Color.black)
 	end()
-
 
 func _draw_interval(data: PoolVector3Array, camera_position: Vector3, step: float, tangent: Vector3) -> void:
 	var t: float = 0.0
@@ -203,7 +198,7 @@ func _draw_catmull_curve_baked() -> void:
 		_draw_interval(interval_data, camera_position, rope_draw_subdivs, particle_data.tangents[i])
 	end()
 
-
+# unused func use catmull_curve_baked instead, it is faster
 func _draw_catmull_curve() -> void:
 	clear()
 	begin(Mesh.PRIMITIVE_TRIANGLES)
@@ -220,8 +215,8 @@ func _draw_catmull_curve() -> void:
 		
 		var rope_draw_subdivs: float = 1.0
 		var cam_dist_particle: Vector3 = camera_position - p1
-		# dont subdivide if farther than 12.0 units from camera
-		if cam_dist_particle.length_squared() <= 144.0:
+		# dont subdivide if farther than subdiv_lod_distance units from camera
+		if cam_dist_particle.length_squared() <= subdiv_lod_distance * subdiv_lod_distance:
 			var tangent_dots: float = particle_data.tangents[i].dot(particle_data.tangents[i + 1])
 			if tangent_dots >= COS_5_DEG:
 				rope_draw_subdivs = 1.0 # 0 subdivisions
@@ -233,7 +228,6 @@ func _draw_catmull_curve() -> void:
 				rope_draw_subdivs = 0.25 # 4 subdivisions
 		
 		var t = 0.0
-		# @ TODO: optimize this!!!!
 		var step = rope_draw_subdivs
 		while t <= 1.0:
 			var point1_data: PoolVector3Array = RopeUtil.catmull_interpolate(p0, p1, p2, p3, t)
