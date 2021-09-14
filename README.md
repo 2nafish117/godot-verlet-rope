@@ -57,4 +57,26 @@ A fast implementation of verlet integration based rope pysics, similar to the on
 | is_attached_start | is the start attached |
 | is_attached_end   | is the end attached |
 
+# Creating ropes in code
 
+```
+# instance and add rope to scene
+var rope = load('<path to GDVerletRope.gd>').instance()
+add_child(rope)
+
+# set its params
+rope.preprocess_iterations = 0
+rope.stiffness = 1.0
+rope.rope_width = 0.02
+rope.transform.origin = Vector3.ZERO
+rope.attach_end_to = end_node.get_path()
+rope.rope_length = 6.0
+rope.simulation_particles = 7
+var wind_noise = OpenSimplexNoise.new()
+wind_noise.octaves = 1
+wind_noise.period = 0.6
+wind_noise.persistence = 1.0
+rope.wind_noise = wind_noise
+rope.wind = Vector3.RIGHT
+rope.wind_scale = 5.0
+  ``` 
