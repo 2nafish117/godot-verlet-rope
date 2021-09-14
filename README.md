@@ -2,6 +2,8 @@
 
 A fast implementation of verlet integration based rope pysics, similar to the one seen in half life 2.
 
+![](https://github.com/2nafish117/godot-verlet-rope/blob/master/images/Screenshot.png)
+
 # Quick Start
 1. Add either rope node to the scene and set the AttachEndTo property in the inspector to any Spatial derived node (hint: use another rope node to chain the ropes or a position node to end the chain).
 2. To use a custom rope texture you will have to set the Albedo of the material in the inpector. Use a tiling texture and set the UV0 x property to change the tiling.
