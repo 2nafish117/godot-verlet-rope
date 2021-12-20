@@ -451,8 +451,7 @@ public override void _Ready() {
 	_collisionCheckBox.Extents = GetAabb().Size * 0.5f;
 	// Configure physics shape query params
 	_collisionCheckParam = new PhysicsShapeQueryParameters();
-	// I thought collision masks were uint?? WTF
-	_collisionCheckParam.CollisionMask = (int) CollisionMask;
+	_collisionCheckParam.CollisionMask = CollisionMask;
 	_collisionCheckParam.Margin = 0.1f;
 	_collisionCheckParam.ShapeRid = _collisionCheckBox.GetRid();
 	_collisionCheckParam.Transform = new Transform(_collisionCheckParam.Transform.basis, GetAabb().Position + _collisionCheckBox.Extents);
