@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://addons/verlet_rope_gd/demo/test_scenes/RopeTest.lmbake" type="BakedLightmapData" id=1]
 [ext_resource path="res://addons/verlet_rope_gd/demo/models/street.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/verlet_rope_gd/verlet_rope.gd" type="Script" id=3]
 [ext_resource path="res://addons/verlet_rope_gd/demo/dbg_camera/DbgCamera.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/verlet_rope_gd/demo/materials/Rope.tres" type="Material" id=5]
 [ext_resource path="res://addons/verlet_rope_gd/demo/textures/kloppenheim_06_4k.exr" type="Texture" id=7]
 
 [sub_resource type="PanoramaSky" id=1]
@@ -36,5 +38,37 @@ __meta__ = {
 
 [node name="street" parent="Map" instance=ExtResource( 2 )]
 
+[node name="ropes" type="Spatial" parent="Map"]
+
+[node name="VerletRopeGd" type="ImmediateGeometry" parent="Map/ropes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.50137, 6.04009, 6.15981 )
+material_override = ExtResource( 5 )
+script = ExtResource( 3 )
+attach_end_to = NodePath("Position3D")
+rope_length = 14.0
+
+[node name="Position3D" type="Position3D" parent="Map/ropes/VerletRopeGd"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0648394, 0, -13.0977 )
+
+[node name="VerletRopeGd2" type="ImmediateGeometry" parent="Map/ropes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.89074, 6.04009, 6.15981 )
+material_override = ExtResource( 5 )
+script = ExtResource( 3 )
+attach_end_to = NodePath("Position3D")
+rope_length = 13.266
+
+[node name="Position3D" type="Position3D" parent="Map/ropes/VerletRopeGd2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0648394, 0, -13.0977 )
+
+[node name="VerletRopeGd3" type="ImmediateGeometry" parent="Map/ropes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.48057, 6.04009, 6.15981 )
+material_override = ExtResource( 5 )
+script = ExtResource( 3 )
+attach_end_to = NodePath("Position3D")
+rope_length = 8.469
+
+[node name="Position3D" type="Position3D" parent="Map/ropes/VerletRopeGd3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.93568, 0, 5.05451 )
+
 [node name="DbgCamera" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.896866, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.30427, 13.8578 )

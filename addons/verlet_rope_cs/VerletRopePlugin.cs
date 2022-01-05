@@ -1,6 +1,5 @@
 #if TOOLS
 using Godot;
-using System;
 
 namespace Fish {
 	[Tool]
@@ -8,15 +7,15 @@ namespace Fish {
 	{
 		public override void _EnterTree()
 		{
-			Script script = GD.Load<Script>("res://addons/verlet_rope/VerletRope.cs");
+			Script script = GD.Load<Script>("res://addons/verlet_rope_cs/VerletRopeCs.cs");
 			Texture texture = GD.Load<Texture>("res://icon.png");
-			AddCustomType("VerletRope", "ImmediateGeometry", script, texture);
+			AddCustomType("VerletRopeCs", "ImmediateGeometry", script, texture);
 			GD.Print("plugin Verlet_rope_cs loaded");
 		}
 
 		public override void _ExitTree()
 		{
-			RemoveCustomType("VerletRope");
+			RemoveCustomType("VerletRopeCs");
 			GD.Print("plugin Verlet_rope_cs un-loaded");
 		}
 	}

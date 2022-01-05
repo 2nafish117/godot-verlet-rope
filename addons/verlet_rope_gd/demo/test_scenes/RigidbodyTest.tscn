@@ -1,4 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://addons/verlet_rope_gd/verlet_rope.gd" type="Script" id=1]
+[ext_resource path="res://addons/verlet_rope_gd/demo/materials/Rope.tres" type="Material" id=2]
+[ext_resource path="res://addons/verlet_rope_gd/demo/materials/DarkMat.tres" type="Material" id=3]
+[ext_resource path="res://addons/verlet_rope_gd/demo/materials/OrangeMat.tres" type="Material" id=4]
+[ext_resource path="res://addons/verlet_rope_gd/demo/dbg_camera/DbgCamera.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 2, 1, 2 )
@@ -94,7 +100,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.76486, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
 mesh = SubResource( 1 )
-material/0 = null
+material/0 = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 shape = SubResource( 2 )
@@ -103,6 +109,11 @@ shape = SubResource( 2 )
 autoplay = "move"
 anims/RESET = SubResource( 9 )
 anims/move = SubResource( 8 )
+
+[node name="VerletRopeGd" type="ImmediateGeometry" parent="StaticBody"]
+material_override = ExtResource( 2 )
+script = ExtResource( 1 )
+attach_end_to = NodePath("../../RigidBody")
 
 [node name="Segment" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.77419, 0 )
@@ -185,10 +196,13 @@ shape = SubResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
 mesh = SubResource( 4 )
-material/0 = null
+material/0 = ExtResource( 4 )
 
 [node name="PinJoint" type="PinJoint" parent="RigidBody"]
 nodes/node_a = NodePath("../../Segment4")
 nodes/node_b = NodePath("..")
 params/bias = 0.99
 params/damping = 1.5
+
+[node name="DbgCamera" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.42727 )

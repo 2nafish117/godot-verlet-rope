@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
+[ext_resource path="res://addons/verlet_rope_cs/VerletRopeCs.cs" type="Script" id=1]
+[ext_resource path="res://addons/verlet_rope_cs/demo/materials/Rope.tres" type="Material" id=2]
+[ext_resource path="res://addons/verlet_rope_cs/demo/dbg_camera/DbgCamera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/verlet_rope_cs/demo/materials/OrangeMat.tres" type="Material" id=4]
 [ext_resource path="res://addons/verlet_rope_cs/demo/materials/DarkMat.tres" type="Material" id=5]
+[ext_resource path="res://addons/verlet_rope_cs/demo/test_scenes/RopeWindNoise.tres" type="OpenSimplexNoise" id=6]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 25, 0.3, 25 )
@@ -61,3 +65,39 @@ shape = SubResource( 5 )
 [node name="MeshInstance" type="MeshInstance" parent="Colliders/StaticBody4"]
 mesh = SubResource( 6 )
 material/0 = null
+
+[node name="ropes" type="Spatial" parent="."]
+
+[node name="VerletRope" type="ImmediateGeometry" parent="ropes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.82393, 1.35233, -3.90788 )
+material_override = ExtResource( 2 )
+script = ExtResource( 1 )
+AttachEndTo = NodePath("")
+ApplyWind = true
+WindNoise = ExtResource( 6 )
+ApplyCollision = true
+
+[node name="VerletRope2" type="ImmediateGeometry" parent="ropes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43143, 1.35233, 4.37711 )
+material_override = ExtResource( 2 )
+script = ExtResource( 1 )
+AttachEndTo = NodePath("")
+ApplyWind = true
+WindNoise = ExtResource( 6 )
+ApplyCollision = true
+
+[node name="VerletRope3" type="ImmediateGeometry" parent="ropes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.14257, 1.35233, 2.16164 )
+material_override = ExtResource( 2 )
+script = ExtResource( 1 )
+AttachEndTo = NodePath("Position3D")
+RopeLength = 10.0
+ApplyWind = true
+WindNoise = ExtResource( 6 )
+ApplyCollision = true
+
+[node name="Position3D" type="Position3D" parent="ropes/VerletRope3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.947324, -0.727702, -6.38426 )
+
+[node name="DbgCamera" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16269, 6.63477 )

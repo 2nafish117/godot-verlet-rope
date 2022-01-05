@@ -11,7 +11,12 @@ config_version=4
 [application]
 
 config/name="godot-verlet-rope"
+run/main_scene="res://addons/verlet_rope_gd/demo/test_scenes/RopeTest.tscn"
 config/icon="res://icon.png"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/verlet_rope_cs/plugin.cfg", "res://addons/verlet_rope_gd/plugin.cfg" )
 
 [input]
 
