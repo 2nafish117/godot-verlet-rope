@@ -1,0 +1,194 @@
+[gd_scene load_steps=9 format=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 2, 1, 2 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1, 0.5, 1 )
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:translation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:translation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 3.76486, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath(".:translation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "move"
+length = 5.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:translation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 2.21684, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -0.514747, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1.4, 2.5, 3.6, 5 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:translation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 3.76486, -0.25, 0, 0.25, 0, 5.35166, -0.25, 0, 0.25, 0, 6.56528, -0.25, 0, 0.25, 0, 5.35166, -0.25, 0, 0.25, 0, 3.76486, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1.4, 2.5, 3.6, 5 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath(".:translation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1.4, 2.5, 3.6, 5 )
+}
+
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 0.1, 1, 0.1 )
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 0.05, 0.5, 0.05 )
+
+[sub_resource type="SphereShape" id=3]
+radius = 0.2
+
+[sub_resource type="SphereMesh" id=4]
+radius = 0.3
+height = 0.6
+
+[node name="Spatial" type="Spatial"]
+
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.76486, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StaticBody"]
+autoplay = "move"
+anims/RESET = SubResource( 9 )
+anims/move = SubResource( 8 )
+
+[node name="Segment" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.77419, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Segment"]
+visible = false
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Segment"]
+shape = SubResource( 7 )
+
+[node name="PinJoint" type="PinJoint" parent="Segment"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+nodes/node_a = NodePath("../../StaticBody")
+nodes/node_b = NodePath("..")
+params/bias = 0.99
+params/damping = 1.5
+
+[node name="Segment2" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74397, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Segment2"]
+visible = false
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Segment2"]
+shape = SubResource( 7 )
+
+[node name="PinJoint" type="PinJoint" parent="Segment2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+nodes/node_a = NodePath("../../Segment")
+nodes/node_b = NodePath("..")
+params/bias = 0.99
+params/damping = 1.5
+
+[node name="Segment3" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.721695, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Segment3"]
+visible = false
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Segment3"]
+shape = SubResource( 7 )
+
+[node name="PinJoint" type="PinJoint" parent="Segment3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+nodes/node_a = NodePath("../../Segment2")
+nodes/node_b = NodePath("..")
+params/bias = 0.99
+params/damping = 1.5
+
+[node name="Segment4" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.303539, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Segment4"]
+visible = false
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Segment4"]
+shape = SubResource( 7 )
+
+[node name="PinJoint" type="PinJoint" parent="Segment4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+nodes/node_a = NodePath("../../Segment3")
+nodes/node_b = NodePath("..")
+params/bias = 0.99
+params/damping = 1.5
+
+[node name="RigidBody" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.038, 0 )
+mass = 20.0
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="PinJoint" type="PinJoint" parent="RigidBody"]
+nodes/node_a = NodePath("../../Segment4")
+nodes/node_b = NodePath("..")
+params/bias = 0.99
+params/damping = 1.5

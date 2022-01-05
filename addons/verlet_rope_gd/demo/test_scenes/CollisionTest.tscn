@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://addons/verlet_rope_gd/demo/materials/OrangeMat.tres" type="Material" id=4]
+[ext_resource path="res://addons/verlet_rope_gd/demo/materials/DarkMat.tres" type="Material" id=5]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 25, 0.3, 25 )
+
+[sub_resource type="CubeMesh" id=2]
+material = ExtResource( 5 )
+size = Vector3( 50, 0.6, 50 )
+
+[sub_resource type="SphereShape" id=5]
+radius = 2.0
+
+[sub_resource type="SphereMesh" id=6]
+material = ExtResource( 4 )
+radius = 2.0
+height = 4.0
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Colliders" type="Spatial" parent="."]
+
+[node name="StaticBody" type="StaticBody" parent="Colliders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.280508, -1.62992, -0.537411 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Colliders/StaticBody"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="StaticBody2" type="StaticBody" parent="Colliders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60522, -2.46891, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody2"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Colliders/StaticBody2"]
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="StaticBody3" type="StaticBody" parent="Colliders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7956, -2.35438, -4.80919 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody3"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Colliders/StaticBody3"]
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="StaticBody4" type="StaticBody" parent="Colliders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7956, -1.7527, 3.96964 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Colliders/StaticBody4"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Colliders/StaticBody4"]
+mesh = SubResource( 6 )
+material/0 = null

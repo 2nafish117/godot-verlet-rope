@@ -1,0 +1,25 @@
+[remap]
+
+importer="texture_array"
+type="TextureArray"
+path="res://.import/RopeTest.exr-e4de5aa2658e5f9c5ccef98dd90ac337.texarr"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://addons/verlet_rope_cs/demo/test_scenes/RopeTest.exr"
+dest_files=[ "res://.import/RopeTest.exr-e4de5aa2658e5f9c5ccef98dd90ac337.texarr" ]
+
+[params]
+
+compress/mode=0
+compress/no_bptc_if_rgb=false
+flags/repeat=false
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=false
+slices/horizontal=1
+slices/vertical=3

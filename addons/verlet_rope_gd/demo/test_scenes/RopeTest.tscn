@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://addons/verlet_rope_gd/demo/test_scenes/RopeTest.lmbake" type="BakedLightmapData" id=1]
+[ext_resource path="res://addons/verlet_rope_gd/demo/models/street.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/verlet_rope_gd/demo/dbg_camera/DbgCamera.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/verlet_rope_gd/demo/textures/kloppenheim_06_4k.exr" type="Texture" id=7]
+
+[sub_resource type="PanoramaSky" id=1]
+panorama = ExtResource( 7 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 1 )
+tonemap_mode = 3
+
+[node name="RopeTest" type="Spatial"]
+
+[node name="Map" type="Spatial" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Map"]
+environment = SubResource( 2 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Map"]
+transform = Transform( -0.812023, -0.323728, -0.485612, 0, -0.832061, 0.554684, -0.583626, 0.450416, 0.675652, 0, 4.1696, 0 )
+light_energy = 0.7
+shadow_enabled = true
+
+[node name="BakedLightmap" type="BakedLightmap" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.69211, 0 )
+extents = Vector3( 13.4783, 10, 15.7147 )
+environment_mode = 1
+light_data = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="street" parent="Map" instance=ExtResource( 2 )]
+
+[node name="DbgCamera" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.896866, 0 )
