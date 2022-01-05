@@ -60,15 +60,66 @@ rope_length = 13.266
 [node name="Position3D" type="Position3D" parent="Map/ropes/VerletRopeGd2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0648394, 0, -13.0977 )
 
+[node name="VerletRopeGd4" type="ImmediateGeometry" parent="Map/ropes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7555, 6.04009, 11.2016 )
+material_override = ExtResource( 5 )
+script = ExtResource( 3 )
+attach_end_to = NodePath("Position3D")
+rope_length = 13.266
+
+[node name="Position3D" type="Position3D" parent="Map/ropes/VerletRopeGd4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0391169, 0, -11.6315 )
+
+[node name="VerletRopeGd5" type="ImmediateGeometry" parent="Map/ropes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.86049, 6.04009, -0.522177 )
+material_override = ExtResource( 5 )
+script = ExtResource( 3 )
+attach_end_to = NodePath("Position3D")
+rope_length = 13.266
+
+[node name="Position3D" type="Position3D" parent="Map/ropes/VerletRopeGd5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0658731, 0, -12.7164 )
+
+[node name="VerletRopeGd7" type="ImmediateGeometry" parent="Map/ropes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.427, 6.04009, -0.522177 )
+material_override = ExtResource( 5 )
+script = ExtResource( 3 )
+apply_collision = true
+rope_length = 7.449
+
+[node name="VerletRopeGd8" type="ImmediateGeometry" parent="Map/ropes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.427, 6.04009, -13.3281 )
+material_override = ExtResource( 5 )
+script = ExtResource( 3 )
+apply_collision = true
+rope_length = 7.449
+
+[node name="VerletRopeGd6" type="ImmediateGeometry" parent="Map/ropes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22213, 7.80746, -10.2781 )
+material_override = ExtResource( 5 )
+script = ExtResource( 3 )
+attach_end_to = NodePath("Position3D")
+rope_length = 14.304
+
+[node name="Position3D" type="Position3D" parent="Map/ropes/VerletRopeGd6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6495, 2.21114, 4.51998 )
+
 [node name="VerletRopeGd3" type="ImmediateGeometry" parent="Map/ropes"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.48057, 6.04009, 6.15981 )
 material_override = ExtResource( 5 )
 script = ExtResource( 3 )
-attach_end_to = NodePath("Position3D")
+attach_end_to = NodePath("VerletRopeGd4")
 rope_length = 8.469
 
+[node name="VerletRopeGd4" type="ImmediateGeometry" parent="Map/ropes/VerletRopeGd3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.94529, 0, 5.04177 )
+material_override = ExtResource( 5 )
+script = ExtResource( 3 )
+attach_end_to = NodePath("../Position3D")
+rope_length = 11.771
+
 [node name="Position3D" type="Position3D" parent="Map/ropes/VerletRopeGd3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.93568, 0, 5.05451 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.88423, 0, -6.6496 )
 
 [node name="DbgCamera" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.30427, 13.8578 )
