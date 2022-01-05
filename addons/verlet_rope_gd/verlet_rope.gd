@@ -15,6 +15,28 @@ const COS_20_DEG: float = cos(deg2rad(20))
 const COS_25_DEG: float = cos(deg2rad(25))
 const COS_30_DEG: float = cos(deg2rad(30))
 
+export(bool) var attach_start: bool = true setget set_attach_start
+func set_attach_start(value: bool) -> void:
+	attach_start = value
+	if particle_data:
+		particle_data.is_attached[0] = value
+
+export(NodePath) var attach_end_to: NodePath setget set_attach_end_to
+func set_attach_end_to(val: NodePath) -> void:
+	attach_end_to = val 
+	if particle_data != null:
+		particle_data.is_attached[-1] = is_attached_end()
+
+export(float) var rope_length: float = 5.0
+export(float) var rope_width := 0.07
+ 
+export(int, 3, 200) var simulation_particles: int = 9 setget set_simulation_particles
+func set_simulation_particles(val: int) -> void:
+	simulation_particles = val
+	if particle_data:
+		particle_data.resize(simulation_particles)
+		_create_rope()
+
 export(int) var iterations: int = 2 # low value = more sag, high value = less sag
 export(int, 0, 120) var preprocess_iterations: int = 0
 export(int, 10, 60) var simulation_rate: int = 60
@@ -38,7 +60,45 @@ export(float) var damping_factor: float = 100.0
 
 export(bool) var apply_collision: bool = false
 export(int, LAYERS_3D_PHYSICS) var collision_mask: int = 1
+ 
+func get_end_location() -> Vector3:
+	return particle_data.pos_curr[-1]
 
+func is_attached_end() -> bool:
+	return not attach_end_to.is_empty()
+
+func is_attached_start() -> bool:
+	return attach_start
+
+func get_segment_length() -> float:
+	return rope_length / (simulation_particles - 1)
+
+# unused func, maybe useful in code?
+func add_particle_at_end(adjust_length: bool) -> void:
+	var _pos_prev: Vector3 = particle_data.pos_prev[-1] + Vector3.BACK * 0.01;
+	var _pos_curr: Vector3 = particle_data.pos_curr[-1] + Vector3.BACK * 0.01;
+	var _is_attached: bool = particle_data.is_attached[-1]
+	var _accel: Vector3 = particle_data.accel[-1]
+	
+	var _tangent: Vector3 = particle_data.tangents[-1]
+	var _normal: Vector3 = particle_data.normals[-1]
+	var _binormal: Vector3 = particle_data.binormals[-1]
+	
+	particle_data.is_attached[-1] = false
+	
+	particle_data.pos_curr.append(_pos_curr)
+	particle_data.pos_prev.append(_pos_prev)
+	particle_data.accel.append(_accel)
+	particle_data.is_attached.append(_is_attached)
+	particle_data.tangents.append(_tangent)
+	particle_data.normals.append(_normal)
+	particle_data.binormals.append(_binormal)
+	
+	simulation_particles += 1
+	if adjust_length:
+		rope_length += get_segment_length()
+
+# private
 var time: float = 0.0
 var particle_data: RopeParticleData
 var visibility_notifier: VisibilityNotifier
@@ -137,65 +197,6 @@ static func catmull_interpolate(p0: Vector3, p1: Vector3, p2: Vector3, p3: Vecto
 	var d: Vector3 = p1;
 	# order point, tangent
 	return PoolVector3Array([a * t_cube + b * t_sqr + c * t + d, (3.0 * a * t_sqr + 2.0 * b * t + c).normalized()])
-
-export(bool) var attach_start: bool = true setget set_attach_start
-func set_attach_start(value: bool) -> void:
-	attach_start = value
-	if particle_data:
-		particle_data.is_attached[0] = value
-
-export(NodePath) var attach_end_to: NodePath setget set_attach_end_to
-func set_attach_end_to(val: NodePath) -> void:
-	attach_end_to = val 
-	if particle_data != null:
-		particle_data.is_attached[-1] = is_attached_end()
- 
-func get_end_location() -> Vector3:
-	return particle_data.pos_curr[-1]
-
-func is_attached_end() -> bool:
-	return not attach_end_to.is_empty()
-
-func is_attached_start() -> bool:
-	return attach_start
-
-export(float) var rope_length: float = 5.0
-export(float) var rope_width := 0.07
- 
-export(int, 3, 200) var simulation_particles: int = 9 setget set_simulation_particles
-func set_simulation_particles(val: int) -> void:
-	simulation_particles = val
-	if particle_data:
-		particle_data.resize(simulation_particles)
-		_create_rope()
-
-func get_segment_length() -> float:
-	return rope_length / (simulation_particles - 1)
-
-# unused func, maybe useful in code?
-func add_particle_at_end(adjust_length: bool) -> void:
-	var _pos_prev: Vector3 = particle_data.pos_prev[-1] + Vector3.BACK * 0.01;
-	var _pos_curr: Vector3 = particle_data.pos_curr[-1] + Vector3.BACK * 0.01;
-	var _is_attached: bool = particle_data.is_attached[-1]
-	var _accel: Vector3 = particle_data.accel[-1]
-	
-	var _tangent: Vector3 = particle_data.tangents[-1]
-	var _normal: Vector3 = particle_data.normals[-1]
-	var _binormal: Vector3 = particle_data.binormals[-1]
-	
-	particle_data.is_attached[-1] = false
-	
-	particle_data.pos_curr.append(_pos_curr)
-	particle_data.pos_prev.append(_pos_prev)
-	particle_data.accel.append(_accel)
-	particle_data.is_attached.append(_is_attached)
-	particle_data.tangents.append(_tangent)
-	particle_data.normals.append(_normal)
-	particle_data.binormals.append(_binormal)
-	
-	simulation_particles += 1
-	if adjust_length:
-		rope_length += get_segment_length()
 
 # unused func draws simple lines between particles
 func _draw_linear_curve():
