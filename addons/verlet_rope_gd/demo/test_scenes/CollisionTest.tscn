@@ -72,9 +72,9 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17517, 0.25245, 0.918893 )
 material_override = ExtResource( 2 )
 script = ExtResource( 1 )
+attach_end_to = NodePath("Position3D")
 wind_noise = ExtResource( 3 )
 apply_collision = true
-attach_end_to = NodePath("Position3D")
 
 [node name="Position3D" type="Position3D" parent="ropes/VerletRopeGd"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19878, -2.31928 )
@@ -83,9 +83,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19878, -2.31928 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66057, 0.25245, -2.79854 )
 material_override = ExtResource( 2 )
 script = ExtResource( 1 )
+attach_end_to = NodePath("Position3D")
 wind_noise = ExtResource( 3 )
 apply_collision = true
-attach_end_to = NodePath("Position3D")
 
 [node name="Position3D" type="Position3D" parent="ropes/VerletRopeGd2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.691061, -0.755936, 3.54283 )
@@ -94,10 +94,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.691061, -0.755936, 3.54283 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.06737, 0.25245, 1.97931 )
 material_override = ExtResource( 2 )
 script = ExtResource( 1 )
-wind_noise = ExtResource( 3 )
-apply_collision = true
 attach_end_to = NodePath("Position3D")
 rope_length = 10.0
+wind_noise = ExtResource( 3 )
+apply_collision = true
 
 [node name="Position3D" type="Position3D" parent="ropes/VerletRopeGd3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45615, 0.374717, 5.32757 )
