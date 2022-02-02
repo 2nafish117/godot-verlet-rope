@@ -83,23 +83,23 @@ namespace Fish {
 	[Export] public float GravityScale = 1.0f;
 
 	[Export] public bool ApplyWind = false;
-	[Export] OpenSimplexNoise WindNoise = null;
+	[Export] public OpenSimplexNoise WindNoise = null;
 	[Export] public Vector3 Wind = new Vector3(1.0f, 0.0f, 0.0f);
 	[Export] public float WindScale = 20.0f;
 
 	[Export] public bool ApplyDamping = true;
-	[Export] float DampingFactor = 100.0f;
+	[Export] public float DampingFactor = 100.0f;
 
 	[Export] public bool ApplyCollision = false;
 	[Export(PropertyHint.Layers3dPhysics)] public uint CollisionMask = 1;
 
 	private float _time = 0.0f;
-	RopeParticleData[] _particleData;
+	private RopeParticleData[] _particleData;
 	private VisibilityNotifier _ropeVisibilityNotifier;
 
 	private PhysicsDirectSpaceState _spaceState;
 	private BoxShape _collisionCheckBox;
-	PhysicsShapeQueryParameters _collisionCheckParam;
+	private PhysicsShapeQueryParameters _collisionCheckParam;
 
 	struct RopeParticleData {
 		public Vector3 PosPrev {get; set;}
@@ -455,7 +455,9 @@ namespace Fish {
 		_collisionCheckParam.Margin = 0.1f;
 		_collisionCheckParam.ShapeRid = _collisionCheckBox.GetRid();
 		_collisionCheckParam.Transform = new Transform(_collisionCheckParam.Transform.basis, GetAabb().Position + _collisionCheckBox.Extents);
-
+		if(MaterialOverride == null) {
+			MaterialOverride = GD.Load<SpatialMaterial>("res://addons/verlet_rope_cs/DefaultRope.material");
+		}
 		CreateRope();
 	}
 

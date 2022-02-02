@@ -520,6 +520,9 @@ func _ready() -> void:
 	collision_check_param.shape_rid = collision_check_box.get_rid()
 	collision_check_param.transform.origin = aabb.position + collision_check_box.extents
 	
+	if material_override == null:
+		material_override = preload("./DefaultRope.material")
+	
 	_create_rope()
 
 func _physics_process(delta: float) -> void:
