@@ -63,7 +63,7 @@ A fast implementation of verlet integration based rope physics, similar to the o
 
 ```
 # instance and add rope to scene
-var rope = load('<path to verlet_rope.gd>').instance()
+var rope = load('<path to verlet_rope.gd>').new()
 add_child(rope)
 
 # set its params
