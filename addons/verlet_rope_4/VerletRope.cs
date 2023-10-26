@@ -10,10 +10,9 @@ Rewritten to be used with Godot 4.0+.
 No additional license applied, feel free to use without my notice, though do not forget to still apply original license.
 (c) Timofey Ivanov / tshmofen
 
-Original plugin: https://github.com/2nafish117/godot-verlet-rope/tree/master
-
 MIT License
 
+Copyright (c) 2023 Zae Chao(zaevi)
 Copyright (c) 2021 Shashank C
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
