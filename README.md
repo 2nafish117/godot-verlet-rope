@@ -29,8 +29,7 @@ That's it, enjoy cool ropes! <sub>(C) 2023 Timofey Ivanov / tshmofen</sub>
 7. Integration of different forces: gravity, wind and air damping.
 8. Basic collisions using raycasts.
 
-# Rope export params and functions
-
+# Export documentation
 | Export variable | How it works |
 |--|--|
 | Attach Start   | Determines if the start point is fixed in place. |
