@@ -1,5 +1,0 @@
-[gd_resource type="OpenSimplexNoise" format=2]
-
-[resource]
-octaves = 2
-persistence = 0.204

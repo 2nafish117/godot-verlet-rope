@@ -1,5 +1,0 @@
-[gd_resource type="OpenSimplexNoise" format=2]
-
-[resource]
-period = 21.0
-persistence = 0.7
