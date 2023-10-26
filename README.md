@@ -1,84 +1,57 @@
-# Godot Verlet Rope
+# Godot 4 Verlet Rope (.NET)
 
-A fast implementation of verlet integration based rope physics, similar to the one seen in half life 2.
+It is a port to Godot 4.0+ of [the fast implementation of verlet-integration-based rope physics](https://github.com/2nafish117/godot-verlet-rope), similar to the one seen in Half-Life 2. 
+
+The port didn't change much on the functionality side: added the possibility to enable ropes at the start of the game (to avoid having ropes enabled in the editor all the time) and unfortunately had to remove the simulation rate as it was causing issues in Godot 4 (I probably will try to bring it back later). All other changes involve rebasing to the Godot 4 API and heavy refactoring. The code should now be much more readable and adhere to C# guidelines, so feel free to read/modify it.
+
+That's it, enjoy cool ropes! <sub>(C) 2023 Timofey Ivanov / tshmofen</sub>
 
 ![](https://github.com/2nafish117/godot-verlet-rope/blob/master/images/Screenshot.png)
 
-# Quick Start
-1. Add either rope node (VerletRopeGd/VerletRopeCs) to the scene and set the AttachEndTo property in the inspector to any Spatial derived node (hint: use another rope node to chain the ropes or a position node to end the chain).
-2. To use a custom rope texture you will have to set the Albedo of the material in the inpector. Use a tiling texture and set the UV0 x property to change the tiling (some example tiling textures can be found in the demos).
-3. If you are creating a custom rope material, remember to set Cull Mode to disabled for the rope to render on both sides (this mainly helps to see ropes clearly in editor mode).
-4. Save an OpenSimplex noise as resource so you can reuse the same wind resource for all ropes. This allows for a global level wind so all ropes react to the same wind.
-5. Add a VisibilityNotifier as a child to make rope draw only when the main camera is viewing it.
-6. NOTE: Rotations on rope have been disabled because rotating it doesn't correctly end the rope at the `attach_end_to` point. Rotations are also not really needed, just move the endpoints instead.
-7. NOTE: If you do make changes to VerletRopeGd.gd or VerletRopeCs.cs make sure to close and reopen the scene in the editor to stop some errors from piling up in the logs.
+# Hints
+1. Try attaching to another rope node to chain the ropes.
+2. To use textures enable tiling textures and set the UV0 property to change the tiling.
+3. Remember to set rope's material cull mode to disabled, otherwise rope will be rendered only on one side (It is mostly for editor clarity, as during runtime ropes will be always facing the camera).
+4. Using one saved resource-noise allows for a global rope wind.
+
+# Notes
+1. Rotations on ropes are disabled as they are not working with the algorithm correctly. Anyways, they are not really needed, that is enough to just move the endpoints instead.
+2. If you see any errors piling up in the logs after any changes in the script, just close/reopen the scene in the editor.
 
 # Featues
-1. Verlet integration based particle simulation
+1. [Verlet Integration](https://en.wikipedia.org/wiki/Verlet_integration) based particle simulation.
 2. Full rope simulation within the editor, set Simulate to off to stop the simulation. 
 3. Set number of particles, length, width and iterations for the rope.
-5. PreprocessIterations processes the rope in _ready so it doesnt start out in a non rest position, a value of 20 is good enough, a higher value makes the scene load time longer.
-6. Always faces the current camera in play mode
-7. Automatically tesselates some sharp parts of the rope using Catmull rom splines to keep the rope looking smooth (use the SubdivLodDistance to change beyond what distance this tesselation stops).
-8. VisibilityNotifier enables and disables drawing of the rope when the current camera is not viewing the rope. The rope automatically grows and shrinks the aabb, so you dont have to set the extents of the VisibilityNotifier yourself)
-9. Enable/disable/configure forces like gravity, wind, air drag.
-10. Rudimentary collisions using raycasts (only tests collisions if a collider enters its aabb), you need to enable this with ApplyCollisions.
+4. Always faces the current camera in play mode.
+5. Automatically tesselates some sharp parts of the rope using Catmull rom splines to keep the rope looking smooth (`SubdivisionLodDistance`).
+6. Switches drawing of the rope when it is not visible on the current camera (When `VisibleOnScreenNofitier3D` is attached to the rope).
+7. Intregration of forces as gravity, wind and air damping.
+8. Basic collisions using raycasts.
 
 # Rope export params and functions
 
-| export variables | what it does |
+| Export variable | How it works |
 |--|--|
-| attach_start | attach/detach the start point |
-| attach_end_to| attach end to any another `Spatial` by node path |
-| rope_length  | length of the rope |
-| rope_width   | width of the rope |
-| simulation_particles | number of particles to simulate the rope. Odd number (greater than 3) is recommended for ropes attached on both sides for a smoother rope at its lowest point|
-| iterations           | number of verlet constraint iterations per frame, higher value gives accurate rope simulation for lengthy ropes with many simulation particles. Increase if you find the rope is sagging or stretching too much |
-| preprocess_iterations| number of iterations to be precalculated in `_ready()` to set the rope in a rest position. Value of 20-30 should be enough. |
-| simulation_rate| rate of simulation. lower the value if the rope is not going to move a lot or it is far away |
-| stiffness      | should be named elasticity. it is a fraction that controls how much the verlet constraint corrects the rope. value from 0.1 to 1.0 is recommended |
-| simulate       | on/off the simulation. NOTE: rope is still being drawn every frame if this is off. |
-| draw           | on/off the drawing. you will still see the rope because `ImmediateGeometry.clear` wasnt called, but the rope isnt being drawn every frame. NOTE: rope is still being simulated if this is off. |
-| subdiv_lod_distance | does catmull rom spline smoothing (for required segments) at distances less than this |
-| apply_gravity  | on/off gravity |
-| gravity        | gravity vector |
-| gravity_scale  | a factor to scale the gravity vector |
-| apply_wind     | on/off wind |
-| wind_noise     | `OpenSimplexNoise` resource for the wind. noise period controls the turbulence(kinda). save resource to disk and share across ropes for a global wind setting. |
-| wind           | the wind vector |
-| wind_scale     | a factor to scale the wind vector |
-| apply_damping  | on/off air drag/damping. sometimes helps when rope bugs out to bring it back to rest. |
-| damping_factor | amount of damping |
-| apply_collision| on/off collision with bodies. collisions work best on smooth surfaces without sharp edges. collisions are checked only when a body enters the ropes `AABB` (axis aligned bounding box)|
-| collision_mask | the collision mask to be used for collisions |
-
-
-| functions | what it does |
-|--|--|
-| get_end_location  | gets the coordinates of the end in global space |
-| is_attached_start | is the start attached |
-| is_attached_end   | is the end attached |
-
-# Creating ropes in code
-
-```
-# instance and add rope to scene
-var rope = load('<path to verlet_rope.gd>').new()
-add_child(rope)
-
-# set its params
-rope.preprocess_iterations = 0
-rope.stiffness = 1.0
-rope.rope_width = 0.02
-rope.transform.origin = Vector3.ZERO
-rope.attach_end_to = end_node.get_path()
-rope.rope_length = 6.0
-rope.simulation_particles = 7
-var wind_noise = OpenSimplexNoise.new()
-wind_noise.octaves = 1
-wind_noise.period = 0.6
-wind_noise.persistence = 1.0
-rope.wind_noise = wind_noise
-rope.wind = Vector3.RIGHT
-rope.wind_scale = 5.0
-  ``` 
+| Attach Start   | Determines if the start point is fixed in place. |
+| Attach End     | A link to any Node3D, if it is set up, the end of the rope will be folliwing this node. |
+| Rope Length    | Length. |
+| Rope Width     | Width. Ropes are flat, but always look at the camera, so width effectively behaves as a diameter.|
+| Simulation Particles | Number of particles to simulate the rope. Odd number (greater than 3) is recommended for ropes attached on both sides for a smoother rope at its lowest point. |
+| Iterations     | Number of verlet constraint iterations per frame, higher value gives accurate rope simulation for lengthy ropes with many simulation particles. Increase if you find the rope is sagging or stretching too much. |
+| Preprocess Iterations| Number of iterations to be precalculated in `_ready()` to set the rope in a rest position. Value of 20-30 should be enough. |
+| Stiffness      | AKA elasticity - it is a fraction that controls how much the verlet constraint corrects the rope. value from 0.1 to 1.0 is recommended. |
+| Simulate       | Enables the simulation. Rope is still being drawn every frame if this is off. |
+| Draw           | Enables the mesh drawing, you will still see the rope because `ImmediateGeometry.clear` wasnt called, but the rope isnt being drawn every frame. Rope is still being simulated if this is off. |
+| Start Draw Simulation On Start | Will enable Simulate and Draw on the start of the game. Useful to not have moving ropes in editor. |
+| Subdivision Lod Distance | Sets max distance where Catmull-Rom spline smoothing is applied for required segments. |
+| Apply Gravity  | Enables gravity. |
+| Gravity        | Gravity direction vector. |
+| Gravity Scale  | A factor to uniformly scale the gravity vector. |
+| Apply Wind     | Applies wind noise. |
+| Wind Noise     | Noise as a base for wind, noise period controls the turbulence (kinda). Use saved resource across different ropes for a global wind setting. |
+| Wind           | The wind direction vector.|
+| Wind Scale     | A factor to scale the wind direction. |
+| Apply Damping  | Enables drag/damping. May help when rope bugs out by bringing it back to rest. |
+| Damping Factor | Amount of damping. |
+| Apply Collision| Enables collision with bodies. Collisions work best on smooth surfaces without sharp edges. |
+| Collision Mask | The collision mask to be used for collisions. |
