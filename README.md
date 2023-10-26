@@ -18,14 +18,14 @@ That's it, enjoy cool ropes! <sub>(C) 2023 Timofey Ivanov / tshmofen</sub>
 1. Rotations on ropes are disabled as they are not working with the algorithm correctly. Anyways, they are not really needed, that is enough to just move the endpoints instead.
 2. If you see any errors piling up in the logs after any changes in the script, just close/reopen the scene in the editor.
 
-# Featues
-1. [Verlet Integration](https://en.wikipedia.org/wiki/Verlet_integration) based particle simulation.
-2. Full rope simulation within the editor, set Simulate to off to stop the simulation. 
-3. Set number of particles, length, width and iterations for the rope.
-4. Always faces the current camera in play mode.
-5. Automatically tesselates some sharp parts of the rope using Catmull rom splines to keep the rope looking smooth (`SubdivisionLodDistance`).
-6. Switches drawing of the rope when it is not visible on the current camera (When `VisibleOnScreenNofitier3D` is attached to the rope).
-7. Intregration of forces as gravity, wind and air damping.
+# Features
+1. [Verlet integration](https://en.wikipedia.org/wiki/Verlet_integration) based particle simulation.
+2. Full rope simulation within the editor.
+3. Adjustable number of particles, length, width and iterations for the rope.
+4. Flat mesh that faces the current camera in play mode.
+5. Automatic tessellation using Catmull-Rom splines.
+6. Support of VisibleOnScreenNotifier3D.
+7. Integration of different forces: gravity, wind and air damping.
 8. Basic collisions using raycasts.
 
 # Rope export params and functions
