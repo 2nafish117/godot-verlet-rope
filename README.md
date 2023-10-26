@@ -6,7 +6,8 @@ The port didn't change much on the functionality side: added the possibility to 
 
 That's it, enjoy cool ropes! <sub>(C) 2023 Timofey Ivanov / tshmofen</sub>
 
-![](https://github.com/2nafish117/godot-verlet-rope/blob/master/images/Screenshot.png)
+![](https://github.com/Tshmofen/verlet-rope-4/blob/master/images/moving_ropes.gif)
+![](https://github.com/Tshmofen/verlet-rope-4/blob/master/images/physics_ropes.gif)
 
 # Hints
 1. Try attaching to another rope node to chain the ropes.
