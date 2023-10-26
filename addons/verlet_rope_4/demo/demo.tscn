@@ -91,7 +91,7 @@ Wind = Vector3(1, 0, 1)
 WindScale = 30.0
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="PillarRope/Pillar/VerletRope"]
-aabb = AABB(-1.88473, -0.553784, -0.00175717, 1.92188, 0.573157, 1.8625)
+aabb = AABB(-1.88312, -0.499766, -0.00179671, 1.92094, 0.520131, 1.86195)
 
 [node name="PillarEnd" type="Node3D" parent="PillarRope/Pillar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00181818, 1.48938, 0.097929)
@@ -112,7 +112,7 @@ DampingFactor = 150.0
 ApplyCollision = true
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="PillarRope/Pillar/PillarEnd/VerletRope"]
-aabb = AABB(-0.0583485, -1.51377, -0.00206711, 1.15648, 1.5524, 1.04517)
+aabb = AABB(-0.0554283, -1.48936, -0.00199723, 1.19666, 1.53207, 1.08614)
 
 [node name="Pillar2" type="CSGBox3D" parent="PillarRope"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -0.937059, 1.4665, 1.02452)
@@ -139,7 +139,7 @@ DampingFactor = 150.0
 ApplyCollision = true
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="PillarRope/Pillar2/PillarEnd/VerletRope"]
-aabb = AABB(-0.0616972, -1.59627, -0.0236481, 1.08619, 1.61939, 1.01078)
+aabb = AABB(-0.0623378, -1.69453, -0.0238766, 1.00737, 1.71561, 0.929754)
 
 [node name="MovingRope" type="Node3D" parent="." node_paths=PackedStringArray("RopeMoving")]
 script = ExtResource("2_vutyd")
