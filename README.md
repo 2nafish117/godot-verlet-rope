@@ -38,11 +38,11 @@ That's it, enjoy cool ropes! <sub>(C) 2023 Timofey Ivanov / tshmofen</sub>
 | Rope Width     | Width. Ropes are flat, but always look at the camera, so width effectively behaves as a diameter.|
 | Simulation Particles | Number of particles to simulate the rope. Odd number (greater than 3) is recommended for ropes attached on both sides for a smoother rope at its lowest point. |
 | Iterations     | Number of verlet constraint iterations per frame, higher value gives accurate rope simulation for lengthy ropes with many simulation particles. Increase if you find the rope is sagging or stretching too much. |
-| Preprocess Iterations| Number of iterations to be precalculated in `_ready()` to set the rope in a rest position. Value of 20-30 should be enough. |
+| Preprocess Iterations| Number of iterations to be precalculated in `Ready()` to set the rope in a rest position. Value of 20-30 should be enough. |
 | Stiffness      | AKA elasticity - it is a fraction that controls how much the verlet constraint corrects the rope. value from 0.1 to 1.0 is recommended. |
 | Simulate       | Enables the simulation. Rope is still being drawn every frame if this is off. |
-| Draw           | Enables the mesh drawing, you will still see the rope because `ImmediateGeometry.clear` wasnt called, but the rope isnt being drawn every frame. Rope is still being simulated if this is off. |
-| Start Draw Simulation On Start | Will enable Simulate and Draw on the start of the game. Useful to not have moving ropes in editor. |
+| Draw           | Enables the mesh drawing, you will still see the rope because `SurfacesClear()` wasnt called, but the rope isnt being drawn every frame. Rope is still being simulated if this is off. |
+| Start Draw Simulation On Start | Will enable `Simulate` and `Draw` on the start of the game. Useful to not have moving ropes in editor. |
 | Subdivision Lod Distance | Sets max distance where Catmull-Rom spline smoothing is applied for required segments. |
 | Apply Gravity  | Enables gravity. |
 | Gravity        | Gravity direction vector. |
