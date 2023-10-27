@@ -1,5 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://d0647cepiojoa"]
 
+[ext_resource type="Material" uid="uid://o7na8drc2je2" path="res://addons/verlet_rope_4/materials/rope_default.material" id="1_xy6g0"]
 [ext_resource type="Script" path="res://addons/verlet_rope_4/VerletRope.cs" id="2_lows4"]
 [ext_resource type="Script" path="res://addons/verlet_rope_4/demo/MovingRopeDemo.cs" id="2_vutyd"]
 
@@ -21,10 +22,6 @@ albedo_color = Color(0.227451, 0.227451, 0.227451, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbhg3"]
 albedo_color = Color(0.529412, 0.12549, 0.133333, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pdjo2"]
-cull_mode = 2
-albedo_color = Color(0, 0.964706, 0.980392, 1)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_3cfm6"]
 
@@ -78,7 +75,7 @@ size = Vector3(0.2, 3, 0.2)
 
 [node name="VerletRope" type="MeshInstance3D" parent="PillarRope/Pillar" node_paths=PackedStringArray("AttachEnd")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.0962079, 1.50411, 0.00534463)
-material_override = SubResource("StandardMaterial3D_pdjo2")
+material_override = ExtResource("1_xy6g0")
 mesh = SubResource("ImmediateMesh_3cfm6")
 script = ExtResource("2_lows4")
 AttachEnd = NodePath("../../Pillar2/PillarEnd")
@@ -91,7 +88,7 @@ Wind = Vector3(1, 0, 1)
 WindScale = 30.0
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="PillarRope/Pillar/VerletRope"]
-aabb = AABB(-1.88312, -0.499766, -0.00179671, 1.92094, 0.520131, 1.86195)
+aabb = AABB(-1.89096, -0.710624, -0.00149623, 1.92341, 0.733972, 1.86452)
 
 [node name="PillarEnd" type="Node3D" parent="PillarRope/Pillar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00181818, 1.48938, 0.097929)
@@ -112,7 +109,7 @@ DampingFactor = 150.0
 ApplyCollision = true
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="PillarRope/Pillar/PillarEnd/VerletRope"]
-aabb = AABB(-0.0554283, -1.48936, -0.00199723, 1.19666, 1.53207, 1.08614)
+aabb = AABB(-0.341217, -2.0351, -0.273883, 0.410679, 2.04357, 0.27604)
 
 [node name="Pillar2" type="CSGBox3D" parent="PillarRope"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -0.937059, 1.4665, 1.02452)
@@ -139,7 +136,7 @@ DampingFactor = 150.0
 ApplyCollision = true
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="PillarRope/Pillar2/PillarEnd/VerletRope"]
-aabb = AABB(-0.0623378, -1.69453, -0.0238766, 1.00737, 1.71561, 0.929754)
+aabb = AABB(-0.0647835, -1.98673, -0.0247216, 0.538934, 1.99633, 0.458115)
 
 [node name="MovingRope" type="Node3D" parent="." node_paths=PackedStringArray("RopeMoving")]
 script = ExtResource("2_vutyd")

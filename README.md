@@ -14,6 +14,7 @@ That's it, enjoy cool ropes! <sub>(C) 2023 Timofey Ivanov / tshmofen</sub>
 2. To use textures enable tiling textures and set the UV0 property to change the tiling.
 3. Remember to set rope's material cull mode to disabled, otherwise rope will be rendered only on one side (It is mostly for editor clarity, as during runtime ropes will be always facing the camera).
 4. Using one saved resource-noise allows for a global rope wind.
+5. If you are duplicating a rope, make sure to create a new `ImmediateMesh` for the created rope, and do not forget to tick `Local to Scene` checkbox in resource to make sure no rope using the same instance. (For new ropes it is done automatically)
 
 # Notes
 1. Rotations on ropes are disabled as they are not working with the algorithm correctly. Anyways, they are not really needed, that is enough to just move the endpoints instead.

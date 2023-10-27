@@ -34,6 +34,35 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+/*
+Rewritten to be used with Godot 4.0+.
+No additional license applied, feel free to use without my notice, though do not forget to still apply original license.
+(c) Timofey Ivanov / tshmofen
+
+MIT License
+
+Copyright (c) 2023 Zae Chao(zaevi)
+Copyright (c) 2021 Shashank C
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+ */
+
 [Tool]
 [GlobalClass]
 public partial class VerletRope : MeshInstance3D
@@ -49,12 +78,12 @@ public partial class VerletRope : MeshInstance3D
         public Vector3 Binormal { get; set; }
     }
 
-    private const string DefaultMaterialPath = "./materials/default_rope.material";
+    private const string DefaultMaterialPath = "res://addons/verlet_rope_4/materials/rope_default.material";
     private const string NoNotifierWarning = "Consider adding a VisibleOnScreenNotifier3D as a child for performance (it's bounds is automatically set at runtime)";
     private const string NormalParameter = "normal";
     private const string PositionParameter = "position";
 
-    private static readonly float Cos5Deg = Mathf.Cos(Mathf.DegToRad(5.0f)); 
+    private static readonly float Cos5Deg = Mathf.Cos(Mathf.DegToRad(5.0f));
     private static readonly float Cos15Deg = Mathf.Cos(Mathf.DegToRad(15.0f));
     private static readonly float Cos30Deg = Mathf.Cos(Mathf.DegToRad(30.0f));
 
@@ -73,7 +102,8 @@ public partial class VerletRope : MeshInstance3D
     private int _simulationParticles = 10;
 
     [ExportGroup("Basics")]
-    [Export] public bool AttachStart
+    [Export]
+    public bool AttachStart
     {
         set
         {
@@ -85,7 +115,8 @@ public partial class VerletRope : MeshInstance3D
         }
         get => _attachStart;
     }
-    [Export] public Node3D AttachEnd
+    [Export]
+    public Node3D AttachEnd
     {
         set
         {
@@ -100,7 +131,8 @@ public partial class VerletRope : MeshInstance3D
     }
     [Export] public float RopeLength { get; set; } = 5.0f;
     [Export] public float RopeWidth { get; set; } = 0.07f;
-    [Export(PropertyHint.Range, "3,300")] public int SimulationParticles
+    [Export(PropertyHint.Range, "3,300")]
+    public int SimulationParticles
     {
         set
         {
@@ -217,7 +249,7 @@ public partial class VerletRope : MeshInstance3D
             if (camDistParticle.LengthSquared() <= SubdivisionLodDistance * SubdivisionLodDistance)
             {
                 var tangentDots = _particleData[i].Tangent.Dot(_particleData[i + 1].Tangent);
-                ropeDrawSubdivisions = 
+                ropeDrawSubdivisions =
                     tangentDots >= Cos5Deg ? 1.0f :
                     tangentDots >= Cos15Deg ? 0.5f :
                     tangentDots >= Cos30Deg ? 0.33333f : 0.25f;
@@ -311,7 +343,7 @@ public partial class VerletRope : MeshInstance3D
 
             if (ApplyWind && WindNoise != null)
             {
-                var timedPosition = p.PositionCurrent + Vector3.One * (float) _time;
+                var timedPosition = p.PositionCurrent + Vector3.One * (float)_time;
                 var windForce = WindNoise.GetNoise3D(timedPosition.X, timedPosition.Y, timedPosition.Z);
                 totalAcceleration += WindScale * Wind * windForce;
             }
@@ -417,13 +449,13 @@ public partial class VerletRope : MeshInstance3D
 
     public override string[] _GetConfigurationWarnings()
     {
-        _ropeVisibleOnScreenNotifier3D = (VisibleOnScreenNotifier3D) GetChildren().FirstOrDefault(c => c is VisibleOnScreenNotifier3D);
-        return _ropeVisibleOnScreenNotifier3D == null ? new[] {NoNotifierWarning} : Array.Empty<string>();
+        _ropeVisibleOnScreenNotifier3D = (VisibleOnScreenNotifier3D)GetChildren().FirstOrDefault(c => c is VisibleOnScreenNotifier3D);
+        return _ropeVisibleOnScreenNotifier3D == null ? new[] { NoNotifierWarning } : Array.Empty<string>();
     }
 
     public override void _Ready()
     {
-        if (StartDrawSimulationOnStart)
+        if (!Engine.IsEditorHint() && StartDrawSimulationOnStart)
         {
             Draw = true;
             Simulate = true;
@@ -433,9 +465,10 @@ public partial class VerletRope : MeshInstance3D
         if (_mesh == null)
         {
             Mesh = _mesh = new ImmediateMesh();
+            _mesh.ResourceLocalToScene = true;
         }
 
-        var notifier = (VisibleOnScreenNotifier3D) GetChildren().FirstOrDefault(c => c is VisibleOnScreenNotifier3D);
+        var notifier = (VisibleOnScreenNotifier3D)GetChildren().FirstOrDefault(c => c is VisibleOnScreenNotifier3D);
         if (notifier != null)
         {
             _ropeVisibleOnScreenNotifier3D = notifier;
@@ -490,13 +523,8 @@ public partial class VerletRope : MeshInstance3D
         if (Simulate)
         {
             ApplyForces();
-            VerletProcess((float) delta);
+            VerletProcess((float)delta);
             ApplyConstraints();
-        }
-
-        if (_ropeVisibleOnScreenNotifier3D != null)
-        {
-            _ropeVisibleOnScreenNotifier3D.Aabb = GetAabb();
         }
 
         if (!Draw)
@@ -516,6 +544,11 @@ public partial class VerletRope : MeshInstance3D
         }
 
         DrawCatmullCurve();
+
+        if (_ropeVisibleOnScreenNotifier3D != null)
+        {
+            _ropeVisibleOnScreenNotifier3D.Aabb = GetAabb();
+        }
     }
 
     public void CreateRope()
