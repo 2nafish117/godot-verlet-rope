@@ -35,7 +35,6 @@ SOFTWARE.
 */
 
 [Tool]
-[GlobalClass]
 public partial class VerletRope : MeshInstance3D
 {
     private struct RopeParticleData
