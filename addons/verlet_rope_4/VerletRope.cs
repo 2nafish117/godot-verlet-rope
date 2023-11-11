@@ -37,22 +37,12 @@ SOFTWARE.
 [Tool]
 public partial class VerletRope : MeshInstance3D
 {
-    private struct RopeParticleData
-    {
-        public Vector3 PositionPrevious { get; set; }
-        public Vector3 PositionCurrent { get; set; }
-        public Vector3 Acceleration { get; set; }
-        public bool IsAttached { get; set; }
-        public Vector3 Tangent { get; set; }
-        public Vector3 Normal { get; set; }
-        public Vector3 Binormal { get; set; }
-    }
-
     #region Vars Private
 
     private const string DefaultMaterialPath = "res://addons/verlet_rope_4/materials/rope_default.material";
     private const string NoNotifierWarning = "Consider adding a VisibleOnScreenNotifier3D as a child for performance (it's bounds is automatically set at runtime)";
     private const string PositionParameter = "position";
+    private const string ParticlesRangeHint = "3,300";
     private const string NormalParameter = "normal";
     private const float CollisionCheckLength = 0.4f;
 
@@ -63,7 +53,7 @@ public partial class VerletRope : MeshInstance3D
     private double _time;
     private Camera3D _camera;
     private Vector3 _previousNormal;
-    private RopeParticleData[] _particleData;
+    private RopeParticleData _particleData;
     private VisibleOnScreenNotifier3D _visibleNotifier;
 
     private ImmediateMesh _mesh;
@@ -112,7 +102,7 @@ public partial class VerletRope : MeshInstance3D
     [Export] public float RopeLength { get; set; } = 5.0f;
     [Export] public float RopeWidth { get; set; } = 0.07f;
 
-    [Export(PropertyHint.Range, "3,300")] 
+    [Export(PropertyHint.Range, ParticlesRangeHint)]
     public int SimulationParticles
     {
         set
@@ -124,7 +114,7 @@ public partial class VerletRope : MeshInstance3D
                 return;
             }
 
-            Array.Resize(ref _particleData, _simulationParticles);
+            _particleData.Resize(_simulationParticles);
             CreateRope();
         }
         get => _simulationParticles;
@@ -191,26 +181,6 @@ public partial class VerletRope : MeshInstance3D
     #region Logic
 
     #region Util
-
-    private RopeParticleData[] GenerateParticleData(Vector3 endLocation)
-    {
-        var direction = (endLocation - GlobalPosition).Normalized();
-        var data = new RopeParticleData[SimulationParticles];
-        var gap = GetSegmentLength();
-
-        for (var i = 0; i < SimulationParticles; i++)
-        {
-            data[i] = new RopeParticleData();
-            ref var particle = ref data[i];
-            particle.Tangent = particle.Normal = particle.Binormal = Vector3.Zero;
-            particle.PositionPrevious = GlobalPosition + direction * gap * i;
-            particle.PositionCurrent = particle.PositionPrevious;
-            particle.Acceleration = Gravity * GravityScale;
-            particle.IsAttached = false;
-        }
-
-        return data;
-    }
 
     private (Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3) GetSimulationParticles(int index)
     {
@@ -401,8 +371,10 @@ public partial class VerletRope : MeshInstance3D
 
     #endregion
 
-    private void DrawCatmullCurve()
+    private void DrawCurve()
     {
+        // Catmull curve
+
         _mesh.SurfaceBegin(Mesh.PrimitiveType.Triangles);
 
         var cameraPosition = _camera?.GlobalPosition ?? Vector3.Zero;
@@ -589,7 +561,7 @@ public partial class VerletRope : MeshInstance3D
         _mesh.ClearSurfaces();
         ResetRopeRotation();
         DrawRopeDebugParticles();
-        DrawCatmullCurve();
+        DrawCurve();
 
         if (_visibleNotifier != null)
         {
@@ -600,7 +572,9 @@ public partial class VerletRope : MeshInstance3D
     public void CreateRope()
     {
         var endLocation = _attachEnd?.GlobalPosition ?? GlobalPosition + Vector3.Down * RopeLength;
-        _particleData = GenerateParticleData(endLocation);
+        var acceleration = Gravity * GravityScale;
+        var segment = GetSegmentLength();
+        _particleData = RopeParticleData.GenerateParticleData(endLocation, GlobalPosition, acceleration, _simulationParticles, segment);
 
         ref var start = ref _particleData[0];
         ref var end = ref _particleData[SimulationParticles - 1];
@@ -621,7 +595,7 @@ public partial class VerletRope : MeshInstance3D
 
     public void DestroyRope()
     {
-        Array.Resize(ref _particleData, 0);
+        _particleData.Resize(0);
         SimulationParticles = 0;
     }
 
