@@ -102,6 +102,7 @@ mesh = SubResource("ImmediateMesh_tckc1")
 script = ExtResource("2_lows4")
 RopeLength = 2.0
 SimulationParticles = 12
+SimulationRate = 75
 PreprocessIterations = 0
 Simulate = false
 Draw = false
@@ -144,9 +145,9 @@ ApplyCollision = true
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="PillarRope/Pillar2/PillarEnd/VerletRope"]
 aabb = AABB(-0.0499806, -0.991116, -0.0193533, 1.46177, 1.03615, 1.39968)
 
-[node name="MovingRope" type="Node3D" parent="." node_paths=PackedStringArray("RopeMoving")]
+[node name="MovingRope" type="Node3D" parent="." node_paths=PackedStringArray("MovingRope")]
 script = ExtResource("2_vutyd")
-RopeMoving = NodePath("VerletRopeMoving")
+MovingRope = NodePath("VerletRopeMoving")
 MovingPath = Vector3(7, 0, 0)
 PathTime = 7.0
 TransitionType = 7
@@ -165,6 +166,7 @@ material_override = SubResource("StandardMaterial3D_8qm37")
 mesh = SubResource("ImmediateMesh_hjvxc")
 skeleton = NodePath("../..")
 script = ExtResource("2_lows4")
+SimulationRate = 75
 PreprocessIterations = 0
 Simulate = false
 Draw = false

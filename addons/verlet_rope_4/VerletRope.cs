@@ -37,12 +37,21 @@ SOFTWARE.
 [Tool]
 public partial class VerletRope : MeshInstance3D
 {
+    #region Signals
+
+    [Signal] public delegate void SimulationStepEventHandler(double delta);
+
+    #endregion
+
+    #region Variables
+
     #region Vars Private
 
     private const string DefaultMaterialPath = "res://addons/verlet_rope_4/materials/rope_default.material";
     private const string NoNotifierWarning = "Consider adding a VisibleOnScreenNotifier3D as a child for performance (it's bounds is automatically set at runtime)";
     private const string PositionParameter = "position";
     private const string ParticlesRangeHint = "3,300";
+    private const string SimulationRangeHint = "30,265";
     private const string NormalParameter = "normal";
     private const float CollisionCheckLength = 0.4f;
 
@@ -52,6 +61,7 @@ public partial class VerletRope : MeshInstance3D
 
     private double _time;
     private Camera3D _camera;
+    private double _simulationDelta;
     private Vector3 _previousNormal;
     private RopeParticleData _particleData;
     private VisibleOnScreenNotifier3D _visibleNotifier;
@@ -125,9 +135,10 @@ public partial class VerletRope : MeshInstance3D
     #region Vars Simulation
 
     [ExportGroup("Simulation")]
+    [Export(PropertyHint.Range, SimulationRangeHint)] public int SimulationRate { get; set; } = 60;
     [Export] public int Iterations { get; set; } = 2;
     [Export] public int PreprocessIterations { get; set; } = 5;
-    [Export] public float PreprocessDelta { get; set; } = 0.016f;
+    [Export] public float PreprocessDelta { get; set; } = 0.016f; 
     [Export(PropertyHint.Range, "0.0, 1.5")] public float Stiffness { get; set; } = 0.9f;
     [Export] public bool Simulate { get; set; } = true;
     [Export] public bool Draw { get; set; } = true;
@@ -178,7 +189,9 @@ public partial class VerletRope : MeshInstance3D
 
     #endregion
 
-    #region Logic
+    #endregion
+
+    #region Internal Logic
 
     #region Util
 
@@ -531,6 +544,13 @@ public partial class VerletRope : MeshInstance3D
         }
 
         _time += delta;
+        _simulationDelta += delta;
+
+        var simulationStep = 1 / (float) SimulationRate;
+        if (_simulationDelta < simulationStep)
+        {
+            return;
+        }
 
         if (_attachEnd != null)
         {
@@ -547,7 +567,7 @@ public partial class VerletRope : MeshInstance3D
         if (Simulate)
         {
             ApplyForces();
-            VerletProcess((float)delta);
+            VerletProcess((float) _simulationDelta);
             ApplyConstraints();
         }
 
@@ -567,6 +587,9 @@ public partial class VerletRope : MeshInstance3D
         {
             _visibleNotifier.Aabb = GetAabb();
         }
+
+        EmitSignal(SignalName.SimulationStep, _simulationDelta);
+        _simulationDelta = 0;
     }
 
     public void CreateRope()
