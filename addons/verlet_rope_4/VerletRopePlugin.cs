@@ -14,14 +14,14 @@ public partial class VerletRopePlugin : EditorPlugin
     public override void _EnterTree()
     {
         var script = GD.Load<Script>(ScriptPath);
-		var texture = GD.Load<Texture2D>(IconPath);
-		AddCustomType(CustomTypeName, nameof(MeshInstance3D), script, texture);
-	}
+        var texture = GD.Load<Texture2D>(IconPath);
+        AddCustomType(CustomTypeName, nameof(MeshInstance3D), script, texture);
+    }
 
-	public override void _ExitTree()
-	{
-		RemoveCustomType(CustomTypeName);
-	}
+    public override void _ExitTree()
+    {
+        RemoveCustomType(CustomTypeName);
+    }
 }
 
 #endif
