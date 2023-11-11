@@ -2,7 +2,7 @@
 
 It is a port to Godot 4.0+ of [the fast implementation of verlet-integration-based rope physics](https://github.com/2nafish117/godot-verlet-rope), similar to the one seen in Half-Life 2. 
 
-The port didn't change much on the functionality side: added the possibility to enable ropes at the start of the game (to avoid having ropes enabled in the editor all the time) and unfortunately had to remove the simulation rate as it was causing issues in Godot 4 (I probably will try to bring it back later). All other changes involve rebasing to the Godot 4 API and heavy refactoring. The code should now be much more readable and adhere to C# guidelines, so feel free to read/modify it.
+The port didn't change much on the functionality side: added the possibility to enable ropes at the start of the game (to avoid having ropes enabled in the editor all the time) and partially changed simulation rate implementation. All other changes involve rebasing to the Godot 4 API and heavy refactoring. The code should now be much more readable and adhere to C# guidelines, so feel free to read/modify it.
 
 That's it, enjoy cool ropes! <sub>(C) 2023 Timofey Ivanov / tshmofen</sub>
 
@@ -24,11 +24,12 @@ That's it, enjoy cool ropes! <sub>(C) 2023 Timofey Ivanov / tshmofen</sub>
 1. [Verlet integration](https://en.wikipedia.org/wiki/Verlet_integration) based particle simulation.
 2. Full rope simulation within the editor.
 3. Adjustable number of particles, length, width and iterations for the rope.
-4. Flat mesh that faces the current camera in play mode.
-5. Automatic tessellation using Catmull-Rom splines.
-6. Support of VisibleOnScreenNotifier3D.
-7. Integration of different forces: gravity, wind and air damping.
-8. Basic collisions using raycasts.
+4. Support of changeable simulation rate, always clamping to the physics rate.
+5. Flat mesh generation, always faces the current camera in play mode.
+6. Automatic tessellation using Catmull-Rom splines.
+7. Support of VisibleOnScreenNotifier3D.
+8. Integration of different forces: gravity, wind and air damping.
+9. Basic collisions using raycasts.
 
 # Export documentation
 | Export variable | How it works |
@@ -38,6 +39,7 @@ That's it, enjoy cool ropes! <sub>(C) 2023 Timofey Ivanov / tshmofen</sub>
 | Rope Length    | Length. |
 | Rope Width     | Width. Ropes are flat, but always look at the camera, so width effectively behaves as a diameter.|
 | Simulation Particles | Number of particles to simulate the rope. Odd number (greater than 3) is recommended for ropes attached on both sides for a smoother rope at its lowest point. |
+| Simulation Rate| Amount of rope calculations per second. Cannot excede physics rate,  if physics rate is 60 and rope simulation rate is 100, it is still gonna be updated only 60 times per second. Should be decreased when rope is not moving much or is far away to save some perfomance. |
 | Iterations     | Number of verlet constraint iterations per frame, higher value gives accurate rope simulation for lengthy ropes with many simulation particles. Increase if you find the rope is sagging or stretching too much. |
 | Preprocess Iterations| Number of iterations to be precalculated in `Ready()` to set the rope in a rest position. Value of 20-30 should be enough. |
 | Stiffness      | AKA elasticity - it is a fraction that controls how much the verlet constraint corrects the rope. value from 0.1 to 1.0 is recommended. |
