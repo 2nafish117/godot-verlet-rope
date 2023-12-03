@@ -49,6 +49,7 @@ public partial class VerletRope : MeshInstance3D
 
     private const string DefaultMaterialPath = "res://addons/verlet_rope_4/materials/rope_default.material";
     private const string NoNotifierWarning = "Consider adding a VisibleOnScreenNotifier3D as a child for performance (it's bounds is automatically set at runtime)";
+    private const string CreationStampMeta = "creation_stamp";
     private const string PositionParameter = "position";
     private const string ParticlesRangeHint = "3,300";
     private const string SimulationRangeHint = "30,265";
@@ -501,9 +502,10 @@ public partial class VerletRope : MeshInstance3D
         }
 
         _mesh = Mesh as ImmediateMesh;
-        if (_mesh == null)
+        if (_mesh == null || _mesh.GetMeta(CreationStampMeta, 0ul).AsUInt64() != GetInstanceId())
         {
             Mesh = _mesh = new ImmediateMesh();
+            _mesh.SetMeta(CreationStampMeta, GetInstanceId());
             _mesh.ResourceLocalToScene = true;
         }
 

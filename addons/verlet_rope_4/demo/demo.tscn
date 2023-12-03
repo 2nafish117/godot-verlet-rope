@@ -23,7 +23,9 @@ albedo_color = Color(0.227451, 0.227451, 0.227451, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbhg3"]
 albedo_color = Color(0.529412, 0.12549, 0.133333, 1)
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_3cfm6"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_a265f"]
+resource_local_to_scene = true
+metadata/creation_stamp = 4981054829111
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0fwmc"]
 
@@ -32,9 +34,13 @@ cull_mode = 2
 albedo_color = Color(0.827451, 0.639216, 1, 1)
 disable_receive_shadows = true
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_tckc1"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_egqr1"]
+resource_local_to_scene = true
+metadata/creation_stamp = 4981105160044
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_uaexb"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_udufg"]
+resource_local_to_scene = true
+metadata/creation_stamp = 4981172269584
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8qm37"]
 cull_mode = 2
@@ -42,7 +48,9 @@ vertex_color_use_as_albedo = true
 albedo_color = Color(0.32549, 0.407843, 0.219608, 1)
 disable_receive_shadows = true
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_hjvxc"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_mlpo0"]
+resource_local_to_scene = true
+metadata/creation_stamp = 4981239378679
 
 [node name="Demo" type="Node3D"]
 
@@ -76,7 +84,7 @@ size = Vector3(0.2, 3, 0.2)
 [node name="VerletRope" type="MeshInstance3D" parent="PillarRope/Pillar" node_paths=PackedStringArray("AttachEnd")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.0962079, 1.50411, 0.00534463)
 material_override = ExtResource("1_xy6g0")
-mesh = SubResource("ImmediateMesh_3cfm6")
+mesh = SubResource("ImmediateMesh_a265f")
 script = ExtResource("2_lows4")
 AttachEnd = NodePath("../../Pillar2/PillarEnd")
 RopeLength = 3.0
@@ -97,7 +105,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00181818, 1.48938, 0.097929
 [node name="VerletRope" type="MeshInstance3D" parent="PillarRope/Pillar/PillarEnd"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_bbaqh")
-mesh = SubResource("ImmediateMesh_tckc1")
+mesh = SubResource("ImmediateMesh_egqr1")
 script = ExtResource("2_lows4")
 RopeLength = 2.0
 SimulationParticles = 12
@@ -125,7 +133,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102865, 1.48938, -0.0031175
 [node name="VerletRope" type="MeshInstance3D" parent="PillarRope/Pillar2/PillarEnd"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.0998901, 0, 0.0998905)
 material_override = SubResource("StandardMaterial3D_bbaqh")
-mesh = SubResource("ImmediateMesh_uaexb")
+mesh = SubResource("ImmediateMesh_udufg")
 script = ExtResource("2_lows4")
 RopeLength = 2.0
 SimulationParticles = 12
@@ -159,7 +167,7 @@ sides = 50
 [node name="VerletRopeMoving" type="MeshInstance3D" parent="MovingRope"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38373, 1.48574, 4.54754)
 material_override = SubResource("StandardMaterial3D_8qm37")
-mesh = SubResource("ImmediateMesh_hjvxc")
+mesh = SubResource("ImmediateMesh_mlpo0")
 skeleton = NodePath("../..")
 script = ExtResource("2_lows4")
 PreprocessIterations = 0
