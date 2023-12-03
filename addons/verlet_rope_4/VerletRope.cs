@@ -571,21 +571,19 @@ public partial class VerletRope : MeshInstance3D
             ApplyConstraints();
         }
 
-        if (!Draw)
+        if (Draw)
         {
-            return;
-        }
+            _camera = GetViewport().GetCamera3D();
+            CalculateRopeCameraOrientation();
+            _mesh.ClearSurfaces();
+            ResetRopeRotation();
+            DrawRopeDebugParticles();
+            DrawCurve();
 
-        _camera = GetViewport().GetCamera3D();
-        CalculateRopeCameraOrientation();
-        _mesh.ClearSurfaces();
-        ResetRopeRotation();
-        DrawRopeDebugParticles();
-        DrawCurve();
-
-        if (_visibleNotifier != null)
-        {
-            _visibleNotifier.Aabb = GetAabb();
+            if (_visibleNotifier != null)
+            {
+                _visibleNotifier.Aabb = GetAabb();
+            }
         }
 
         EmitSignal(SignalName.SimulationStep, _simulationDelta);

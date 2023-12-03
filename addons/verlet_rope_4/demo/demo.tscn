@@ -83,14 +83,13 @@ RopeLength = 3.0
 RopeWidth = 0.04
 PreprocessIterations = 0
 Simulate = false
-Draw = false
 ApplyWind = true
 WindNoise = SubResource("FastNoiseLite_0fwmc")
 Wind = Vector3(1, 0, 1)
 WindScale = 30.0
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="PillarRope/Pillar/VerletRope"]
-aabb = AABB(-1.87666, -0.33939, -0.00186748, 1.91562, 0.36272, 1.85964)
+aabb = AABB(-1.90889, -0.0550685, -0.000127025, 1.90934, 0.0950659, 1.89645)
 
 [node name="PillarEnd" type="Node3D" parent="PillarRope/Pillar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00181818, 1.48938, 0.097929)
@@ -102,10 +101,8 @@ mesh = SubResource("ImmediateMesh_tckc1")
 script = ExtResource("2_lows4")
 RopeLength = 2.0
 SimulationParticles = 12
-SimulationRate = 75
 PreprocessIterations = 0
 Simulate = false
-Draw = false
 ApplyWind = true
 WindNoise = SubResource("FastNoiseLite_0fwmc")
 Wind = Vector3(1, 0, 1)
@@ -114,7 +111,7 @@ DampingFactor = 150.0
 ApplyCollision = true
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="PillarRope/Pillar/PillarEnd/VerletRope"]
-aabb = AABB(-0.0372599, -0.895392, -0.00151278, 1.47683, 0.954643, 1.40607)
+aabb = AABB(-0.0699648, -2, -0.00222053, 0.13994, 2.00001, 0.00444106)
 
 [node name="Pillar2" type="CSGBox3D" parent="PillarRope"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -0.937059, 1.4665, 1.02452)
@@ -134,7 +131,6 @@ RopeLength = 2.0
 SimulationParticles = 12
 PreprocessIterations = 0
 Simulate = false
-Draw = false
 ApplyWind = true
 WindNoise = SubResource("FastNoiseLite_0fwmc")
 Wind = Vector3(1, 0, 1)
@@ -143,7 +139,7 @@ DampingFactor = 150.0
 ApplyCollision = true
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="PillarRope/Pillar2/PillarEnd/VerletRope"]
-aabb = AABB(-0.0499806, -0.991116, -0.0193533, 1.46177, 1.03615, 1.39968)
+aabb = AABB(-0.065424, -2, -0.0248938, 0.130858, 2.00001, 0.0497876)
 
 [node name="MovingRope" type="Node3D" parent="." node_paths=PackedStringArray("MovingRope")]
 script = ExtResource("2_vutyd")
@@ -166,10 +162,8 @@ material_override = SubResource("StandardMaterial3D_8qm37")
 mesh = SubResource("ImmediateMesh_hjvxc")
 skeleton = NodePath("../..")
 script = ExtResource("2_lows4")
-SimulationRate = 75
 PreprocessIterations = 0
 Simulate = false
-Draw = false
 WindNoise = SubResource("FastNoiseLite_0fwmc")
 Wind = Vector3(1, 0, 1)
 WindScale = 10.0
@@ -177,4 +171,4 @@ DampingFactor = 1000.0
 ApplyCollision = true
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="MovingRope/VerletRopeMoving"]
-aabb = AABB(-0.0502977, -1.48574, -0.0486841, 0.100605, 1.48575, 0.0973682)
+aabb = AABB(-0.0502977, -5, -0.0486841, 0.100605, 5.00001, 0.0973681)
