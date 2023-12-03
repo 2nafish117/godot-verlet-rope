@@ -2,7 +2,7 @@
 
 It is a port to Godot 4.0+ of [the fast implementation of verlet-integration-based rope physics](https://github.com/2nafish117/godot-verlet-rope), similar to the one seen in Half-Life 2. 
 
-The port didn't change much on the functionality side: added the possibility to enable ropes at the start of the game (to avoid having ropes enabled in the editor all the time) and partially changed simulation rate implementation. All other changes involve rebasing to the Godot 4 API and heavy refactoring. The code should now be much more readable and adhere to C# guidelines, so feel free to read/modify it.
+The port didn't change much on the functionality side: added the possibility to enable ropes at the start of the game (to avoid having ropes enabled in the editor all the time), partially changed simulation rate implementation, added support for correct ropes duplication (`ctrl` + `d`). All other changes involve rebasing to the Godot 4 API and heavy refactoring. The code should now be much more readable and adhere to C# guidelines, so feel free to read/modify it.
 
 That's it, enjoy cool ropes! <sub>(C) 2023 Timofey Ivanov / tshmofen</sub>
 
@@ -11,14 +11,15 @@ That's it, enjoy cool ropes! <sub>(C) 2023 Timofey Ivanov / tshmofen</sub>
 
 # Hints
 1. Try attaching to another rope node to chain the ropes.
-2. To use textures enable tiling textures and set the UV0 property to change the tiling.
+2. To use textures enable tiling textures and set the UV1 property to change the tiling.
 3. Remember to set rope's material cull mode to disabled, otherwise rope will be rendered only on one side (It is mostly for editor clarity, as during runtime ropes will be always facing the camera).
 4. Using one saved resource-noise allows for a global rope wind.
-5. If you are duplicating a rope, make sure to create a new `ImmediateMesh` for the created rope, and do not forget to tick `Local to Scene` checkbox in resource to make sure no rope using the same instance. (For new ropes it is done automatically)
 
 # Notes
 1. Rotations on ropes are disabled as they are not working with the algorithm correctly. Anyways, they are not really needed, that is enough to just move the endpoints instead.
 2. If you see any errors piling up in the logs after any changes in the script, just close/reopen the scene in the editor.
+3. Do not worry about unique instances of meshes for each rope, they are ensured to be unique automatically.
+4. Look at `MovingRopeDemo.cs` to see how you can move ropes without jittering, when simulation rate is less than physics tickrate. In such cases use `SimulationStep` signal similar to example.
 
 # Features
 1. [Verlet integration](https://en.wikipedia.org/wiki/Verlet_integration) based particle simulation.
