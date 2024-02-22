@@ -178,6 +178,7 @@ public partial class VerletRope : MeshInstance3D
 
     [ExportGroup("Collision")]
     [Export] public bool ApplyCollision { get; set; }
+    [Export] public float MaxSegmentStretch { get; set; } = 1.5f;
     [Export(PropertyHint.Layers3DPhysics)] public uint CollisionMask { get; set; } = 1;
 
     #endregion
@@ -359,6 +360,8 @@ public partial class VerletRope : MeshInstance3D
 
     private void CollideRope()
     {
+        var segmentStretchLength = GetSegmentLength() * MaxSegmentStretch;
+
         for (var i = 0; i < SimulationParticles - 1; ++i)
         {
             var from = _particleData[i + 1].PositionPrevious;
@@ -368,6 +371,16 @@ public partial class VerletRope : MeshInstance3D
             if (particleMove == Vector3.Zero)
             {
                 continue;
+            }
+
+            if (segmentStretchLength != 0)
+            {
+                var previousPointPosition = _particleData[i].PositionCurrent;
+                var expectedSegmentLength = (to - previousPointPosition).LengthSquared();
+                if (expectedSegmentLength > segmentStretchLength * segmentStretchLength)
+                {
+                    continue;
+                }
             }
 
             var particleDirection = particleMove.Normalized();
