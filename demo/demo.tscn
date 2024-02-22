@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://o7na8drc2je2" path="res://addons/verlet_rope_4/materials/rope_default.material" id="1_xy6g0"]
 [ext_resource type="Script" path="res://addons/verlet_rope_4/VerletRope.cs" id="2_lows4"]
-[ext_resource type="Script" path="res://addons/verlet_rope_4/demo/MovingRopeDemo.cs" id="2_vutyd"]
+[ext_resource type="Script" path="res://demo/MovingRopeDemo.cs" id="2_vutyd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3bmw0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -23,9 +23,9 @@ albedo_color = Color(0.227451, 0.227451, 0.227451, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbhg3"]
 albedo_color = Color(0.529412, 0.12549, 0.133333, 1)
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_a265f"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_kenjs"]
 resource_local_to_scene = true
-metadata/creation_stamp = 4981054829111
+metadata/creation_stamp = 2342334296618
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0fwmc"]
 
@@ -34,13 +34,13 @@ cull_mode = 2
 albedo_color = Color(0.827451, 0.639216, 1, 1)
 disable_receive_shadows = true
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_egqr1"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_dcmmt"]
 resource_local_to_scene = true
-metadata/creation_stamp = 4981105160044
+metadata/creation_stamp = 2342384628265
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_udufg"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_wolrm"]
 resource_local_to_scene = true
-metadata/creation_stamp = 4981172269584
+metadata/creation_stamp = 2342451737127
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8qm37"]
 cull_mode = 2
@@ -48,9 +48,9 @@ vertex_color_use_as_albedo = true
 albedo_color = Color(0.32549, 0.407843, 0.219608, 1)
 disable_receive_shadows = true
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_mlpo0"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_bq3bo"]
 resource_local_to_scene = true
-metadata/creation_stamp = 4981239378679
+metadata/creation_stamp = 2342518845828
 
 [node name="Demo" type="Node3D"]
 
@@ -84,7 +84,7 @@ size = Vector3(0.2, 3, 0.2)
 [node name="VerletRope" type="MeshInstance3D" parent="PillarRope/Pillar" node_paths=PackedStringArray("AttachEnd")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.0962079, 1.50411, 0.00534463)
 material_override = ExtResource("1_xy6g0")
-mesh = SubResource("ImmediateMesh_a265f")
+mesh = SubResource("ImmediateMesh_kenjs")
 script = ExtResource("2_lows4")
 AttachEnd = NodePath("../../Pillar2/PillarEnd")
 RopeLength = 3.0
@@ -105,7 +105,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00181818, 1.48938, 0.097929
 [node name="VerletRope" type="MeshInstance3D" parent="PillarRope/Pillar/PillarEnd"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_bbaqh")
-mesh = SubResource("ImmediateMesh_egqr1")
+mesh = SubResource("ImmediateMesh_dcmmt")
 script = ExtResource("2_lows4")
 RopeLength = 2.0
 SimulationParticles = 12
@@ -133,7 +133,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102865, 1.48938, -0.0031175
 [node name="VerletRope" type="MeshInstance3D" parent="PillarRope/Pillar2/PillarEnd"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.0998901, 0, 0.0998905)
 material_override = SubResource("StandardMaterial3D_bbaqh")
-mesh = SubResource("ImmediateMesh_udufg")
+mesh = SubResource("ImmediateMesh_wolrm")
 script = ExtResource("2_lows4")
 RopeLength = 2.0
 SimulationParticles = 12
@@ -167,7 +167,7 @@ sides = 50
 [node name="VerletRopeMoving" type="MeshInstance3D" parent="MovingRope"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38373, 1.48574, 4.54754)
 material_override = SubResource("StandardMaterial3D_8qm37")
-mesh = SubResource("ImmediateMesh_mlpo0")
+mesh = SubResource("ImmediateMesh_bq3bo")
 skeleton = NodePath("../..")
 script = ExtResource("2_lows4")
 PreprocessIterations = 0
