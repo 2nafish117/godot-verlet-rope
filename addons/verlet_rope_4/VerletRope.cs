@@ -54,7 +54,7 @@ public partial class VerletRope : MeshInstance3D
     private const string ParticlesRangeHint = "3,300";
     private const string SimulationRangeHint = "30,265";
     private const string NormalParameter = "normal";
-    private const float CollisionCheckLength = 0.4f;
+    private const float CollisionCheckLength = 0.001f;
 
     private static readonly float Cos5Deg = Mathf.Cos(Mathf.DegToRad(5.0f));
     private static readonly float Cos15Deg = Mathf.Cos(Mathf.DegToRad(15.0f));
@@ -63,7 +63,6 @@ public partial class VerletRope : MeshInstance3D
     private double _time;
     private Camera3D _camera;
     private double _simulationDelta;
-    private Vector3 _previousNormal;
     private RopeParticleData _particleData;
     private VisibleOnScreenNotifier3D _visibleNotifier;
 
@@ -178,7 +177,7 @@ public partial class VerletRope : MeshInstance3D
     #region Vars Collision
 
     [ExportGroup("Collision")]
-    [Export] public bool ApplyCollision { get; set; } = false;
+    [Export] public bool ApplyCollision { get; set; }
     [Export(PropertyHint.Layers3DPhysics)] public uint CollisionMask { get; set; } = 1;
 
     #endregion
@@ -362,10 +361,20 @@ public partial class VerletRope : MeshInstance3D
     {
         for (var i = 0; i < SimulationParticles - 1; ++i)
         {
+            var from = _particleData[i + 1].PositionPrevious;
+            var to = _particleData[i + 1].PositionCurrent;
+            var particleMove = to - from;
+
+            if (particleMove == Vector3.Zero)
+            {
+                continue;
+            }
+
+            var particleDirection = particleMove.Normalized();
             var result = _spaceState.IntersectRay(new PhysicsRayQueryParameters3D
             {
-                From = _particleData[i].PositionCurrent + _previousNormal * CollisionCheckLength,
-                To = _particleData[i + 1].PositionCurrent,
+                From = from,
+                To = to + (particleDirection * CollisionCheckLength),
                 CollisionMask = CollisionMask
             });
 
@@ -374,12 +383,9 @@ public partial class VerletRope : MeshInstance3D
                 continue;
             }
 
-            _previousNormal = result[NormalParameter].AsVector3();
-            var yDifference = result[PositionParameter].AsVector3() - _particleData[i + 1].PositionCurrent;
-            yDifference = yDifference.Project(_previousNormal);
-
-            _particleData[i + 1].PositionCurrent += yDifference;
-            _particleData[i + 1].PositionPrevious = _particleData[i + 1].PositionCurrent;
+            var collisionNormal = result[NormalParameter].AsVector3();
+            var collisionPoint = result[PositionParameter].AsVector3();
+            _particleData[i + 1].PositionCurrent = collisionPoint + (collisionNormal * CollisionCheckLength);
         }
     }
 
