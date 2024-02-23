@@ -52,11 +52,9 @@ public partial class VerletRope : MeshInstance3D
     private const string DefaultMaterialPath = "res://addons/verlet_rope_4/materials/rope_default.material";
     private const string NoNotifierWarning = "Consider adding a VisibleOnScreenNotifier3D as a child for performance (it's bounds is automatically set at runtime)";
     private const string CreationStampMeta = "creation_stamp";
-    private const string PositionParameter = "position";
     private const string ParticlesRangeHint = "3,300";
     private const string SimulationRangeHint = "30,265";
     private const string MaxSegmentStretchRangeHint = "1.05,20";
-    private const string NormalParameter = "normal";
     private const float CollisionCheckLength = 0.001f;
 
     private static readonly float Cos5Deg = Mathf.Cos(Mathf.DegToRad(5.0f));
@@ -69,10 +67,11 @@ public partial class VerletRope : MeshInstance3D
     private RopeParticleData _particleData;
     private VisibleOnScreenNotifier3D _visibleNotifier;
 
+    private RayCast3D _rayCast;
     private ImmediateMesh _mesh;
     private BoxShape3D _collisionCheckBox;
     private PhysicsDirectSpaceState3D _spaceState;
-    private PhysicsShapeQueryParameters3D _collisionCheckParameters;
+    private PhysicsShapeQueryParameters3D _collisionShapeParameters;
 
     private Node3D _attachEnd;
     private bool _attachStart = true;
@@ -181,7 +180,7 @@ public partial class VerletRope : MeshInstance3D
 
     [ExportGroup("Collision")]
     [Export] public RopeCollisionType RopeCollisionType { get; set; } = RopeCollisionType.None;
-    [Export(PropertyHint.Range, MaxSegmentStretchRangeHint)] public float MaxSegmentStretch { get; set; } = 1.15f;
+    [Export(PropertyHint.Range, MaxSegmentStretchRangeHint)] public float MaxSegmentStretch { get; set; } = 1.1f;
     [Export(PropertyHint.Range, MaxSegmentStretchRangeHint)] public float SlideIgnoreCollisionStretch { get; set; } = 1.25f;
     [Export(PropertyHint.Layers3DPhysics)] public uint CollisionMask { get; set; } = 1;
 
@@ -356,16 +355,17 @@ public partial class VerletRope : MeshInstance3D
         }
 
         _collisionCheckBox.Size = visuals.Size;
-        _collisionCheckParameters.Transform = new Transform3D(_collisionCheckParameters.Transform.Basis, GlobalPosition + visuals.Position + visuals.Size / 2);
+        _collisionShapeParameters.Transform = new Transform3D(_collisionShapeParameters.Transform.Basis, GlobalPosition + visuals.Position + visuals.Size / 2);
 
-        var collisions = _spaceState.IntersectShape(_collisionCheckParameters, 1);
+        var collisions = _spaceState.IntersectShape(_collisionShapeParameters, 1);
         return collisions.Count > 0;
     }
 
     private void CollideRope()
     {
         var segmentStretchMaxLength = GetSegmentLength() * MaxSegmentStretch;
-        var ropePullStretched = false;
+        var segmentSlideIgnoreLength = GetSegmentLength() * SlideIgnoreCollisionStretch;
+        var ropeSlide = false;
 
         // visit all points from start + 1 to an end
         for (var i = 0; i < SimulationParticles - 1; ++i)
@@ -382,45 +382,33 @@ public partial class VerletRope : MeshInstance3D
             var currentSegmentLength = (previousPoint.PositionCurrent - currentPoint.PositionCurrent).Length();
             var isStretched = currentSegmentLength > segmentStretchMaxLength;
 
+            // slide all following points till the end
+            ropeSlide = ropeSlide || isStretched;
+
             if (isStretched)
             {
-                if (RopeCollisionType == RopeCollisionType.PureStretch)
+                switch (RopeCollisionType)
                 {
-                    // ignore collision
-                    continue;
-                }
-
-                if (RopeCollisionType == RopeCollisionType.SlideStretch)
-                {
-                    // pull all following points
-                    ropePullStretched = true;
-
-                    if (currentSegmentLength > SlideIgnoreCollisionStretch)
-                    {
-                        // ignore collision
+                    case RopeCollisionType.PureStretch:
+                    case RopeCollisionType.SlideStretch when currentSegmentLength > segmentSlideIgnoreLength:
                         continue;
-                    }
                 }
             }
 
-            var particleDirection = particleMove.Normalized();
-            var result = _spaceState.IntersectRay(new PhysicsRayQueryParameters3D
-            {
-                From = currentPoint.PositionPrevious,
-                To = currentPoint.PositionCurrent + (particleDirection * CollisionCheckLength),
-                CollisionMask = CollisionMask
-            });
+            _rayCast.GlobalPosition = currentPoint.PositionPrevious;
+            _rayCast.TargetPosition = particleMove + (particleMove.Normalized() * CollisionCheckLength);
+            _rayCast.ForceRaycastUpdate();
 
-            if (result.Count == 0)
+            if (!_rayCast.IsColliding())
             {
                 continue;
             }
 
-            var collisionNormal = result[NormalParameter].AsVector3();
-            var collisionPoint = result[PositionParameter].AsVector3();
+            var collisionPoint = _rayCast.GetCollisionPoint();
+            var collisionNormal = _rayCast.GetCollisionNormal();
             currentPoint.PositionCurrent = collisionPoint + (collisionNormal * CollisionCheckLength);
 
-            if (ropePullStretched)
+            if (ropeSlide)
             {
                 currentPoint.PositionCurrent += particleMove.Slide(collisionNormal);
             }
@@ -555,6 +543,14 @@ public partial class VerletRope : MeshInstance3D
             _mesh.ResourceLocalToScene = true;
         }
 
+        AddChild(_rayCast = new RayCast3D
+        {
+            CollisionMask = CollisionMask,
+            HitFromInside = true,
+            HitBackFaces = true,
+            Enabled = false
+        });
+
         _visibleNotifier = GetFirstOrDefaultNotifier();
         if (_visibleNotifier != null)
         {
@@ -571,14 +567,14 @@ public partial class VerletRope : MeshInstance3D
             Size = visuals.Size
         };
 
-        _collisionCheckParameters = new PhysicsShapeQueryParameters3D
+        _collisionShapeParameters = new PhysicsShapeQueryParameters3D
         {
             ShapeRid = _collisionCheckBox.GetRid(),
             CollisionMask = CollisionMask,
             Margin = 0.1f
         };
 
-        _collisionCheckParameters.Transform = new Transform3D(_collisionCheckParameters.Transform.Basis, GlobalPosition + visuals.Position + visuals.Size / 2);
+        _collisionShapeParameters.Transform = new Transform3D(_collisionShapeParameters.Transform.Basis, GlobalPosition + visuals.Position + visuals.Size / 2);
         MaterialOverride ??= GD.Load<StandardMaterial3D>(DefaultMaterialPath);
 
         CreateRope();

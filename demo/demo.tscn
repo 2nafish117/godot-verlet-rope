@@ -100,7 +100,7 @@ WindNoise = SubResource("FastNoiseLite_0fwmc")
 Wind = Vector3(1, 0, 1)
 WindScale = 30.0
 MaxSegmentStretch = 1.5
-PullSpeed = 1.0
+SlideIgnoreCollisionStretch = 1.3
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="PillarRope/Pillar/VerletRope"]
 aabb = AABB(-1.90889, -0.0550685, -0.000127025, 1.90934, 0.0950659, 1.89645)
@@ -123,7 +123,7 @@ Wind = Vector3(1, 0, 1)
 WindScale = 30.0
 DampingFactor = 150.0
 MaxSegmentStretch = 1.5
-PullSpeed = 1.0
+SlideIgnoreCollisionStretch = 1.3
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="PillarRope/Pillar/PillarEnd/VerletRope"]
 aabb = AABB(-0.0699648, -2, -0.00222053, 0.13994, 2.00001, 0.00444106)
@@ -152,13 +152,13 @@ Wind = Vector3(1, 0, 1)
 WindScale = 30.0
 DampingFactor = 150.0
 MaxSegmentStretch = 1.5
-PullSpeed = 1.0
+SlideIgnoreCollisionStretch = 1.3
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="PillarRope/Pillar2/PillarEnd/VerletRope"]
 aabb = AABB(-0.065424, -2, -0.0248938, 0.130858, 2.00001, 0.0497876)
 
 [node name="VerletRopeMoving2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34017, 2.40762, 5.58787)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61425, 2.3746, 5.5191)
 material_override = SubResource("StandardMaterial3D_8qm37")
 mesh = SubResource("ImmediateMesh_ytvdc")
 script = ExtResource("2_lows4")
@@ -168,7 +168,7 @@ WindNoise = SubResource("FastNoiseLite_0fwmc")
 Wind = Vector3(1, 0, 1)
 WindScale = 10.0
 DampingFactor = 1000.0
-CollisionType = 2
+RopeCollisionType = 2
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.411494, 1.1829, 5.37803)
@@ -203,7 +203,7 @@ Wind = Vector3(1, 0, 1)
 WindScale = 10.0
 DampingFactor = 1000.0
 MaxSegmentStretch = 1.5
-PullSpeed = 1.0
+SlideIgnoreCollisionStretch = 1.3
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="MovingRope/VerletRopeMoving"]
 aabb = AABB(-0.0502977, -5, -0.0486841, 0.100605, 5.00001, 0.0973681)
