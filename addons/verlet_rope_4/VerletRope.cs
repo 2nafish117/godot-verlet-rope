@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using VerletRope.addons.verlet_rope_4.Structure;
 using VerletRope4.Structure;
 
@@ -54,7 +53,7 @@ public partial class VerletRope : MeshInstance3D
     private const string CreationStampMeta = "creation_stamp";
     private const string ParticlesRangeHint = "3,300";
     private const string SimulationRangeHint = "30,265";
-    private const string MaxSegmentStretchRangeHint = "1.05,20";
+    private const string MaxSegmentStretchRangeHint = "1,20";
     private const float CollisionCheckLength = 0.001f;
 
     private static readonly float Cos5Deg = Mathf.Cos(Mathf.DegToRad(5.0f));
@@ -188,8 +187,8 @@ public partial class VerletRope : MeshInstance3D
 
     [ExportGroup("Collision")]
     [Export] public RopeCollisionType RopeCollisionType { get; set; } = RopeCollisionType.None;
-    [Export(PropertyHint.Range, MaxSegmentStretchRangeHint)] public float MaxSegmentStretch { get; set; } = 1.1f;
-    [Export(PropertyHint.Range, MaxSegmentStretchRangeHint)] public float SlideIgnoreCollisionStretch { get; set; } = 1.25f;
+    [Export(PropertyHint.Range, MaxSegmentStretchRangeHint)] public float MaxRopeStretch { get; set; } = 1.1f;
+    [Export(PropertyHint.Range, MaxSegmentStretchRangeHint)] public float SlideIgnoreCollisionStretch { get; set; } = 1.5f;
     [Export(PropertyHint.Layers3DPhysics)] public uint CollisionMask { get; set; } = 1;
 
     private bool _hitFromInside = true;
@@ -248,6 +247,18 @@ public partial class VerletRope : MeshInstance3D
         // NOTE: rope doesn't draw from origin to attach_end_to correctly if rotated
         // calling to_local() in the drawing code is too slow
         GlobalTransform = new Transform3D(Basis.Identity, GlobalPosition);
+    }
+
+    private float GetCurrentRopeLength()
+    {
+        var length = 0f;
+
+        for (var i = 0; i < SimulationParticles - 1; i++)
+        {
+            length += (_particleData[i + 1].PositionCurrent - _particleData[i].PositionCurrent).Length();
+        }
+
+        return length;
     }
 
     #endregion
@@ -380,14 +391,13 @@ public partial class VerletRope : MeshInstance3D
 
     private void CollideRope()
     {
-        var segmentStretchMaxLength = GetSegmentLength() * MaxSegmentStretch;
         var segmentSlideIgnoreLength = GetSegmentLength() * SlideIgnoreCollisionStretch;
-        var ropeSlide = false;
+        var isRopeStretched = GetCurrentRopeLength() > RopeLength * MaxRopeStretch;
 
         // visit all points from start + 1 to an end
-        for (var i = 0; i < SimulationParticles - 1; ++i)
+        for (var i = 1; i < SimulationParticles; i++)
         {
-            var currentPoint = _particleData[i + 1];
+            ref var currentPoint = ref _particleData[i];
             var particleMove = currentPoint.PositionCurrent - currentPoint.PositionPrevious;
 
             if (particleMove == Vector3.Zero)
@@ -395,20 +405,18 @@ public partial class VerletRope : MeshInstance3D
                 continue;
             }
 
-            var previousPoint = _particleData[i];
-            var currentSegmentLength = (previousPoint.PositionCurrent - currentPoint.PositionCurrent).Length();
-            var isStretched = currentSegmentLength > segmentStretchMaxLength;
-
-            // slide all following points till the end
-            ropeSlide = ropeSlide || isStretched;
-
-            if (isStretched)
+            if (isRopeStretched)
             {
-                switch (RopeCollisionType)
+                if (RopeCollisionType == RopeCollisionType.PureStretch)
                 {
-                    case RopeCollisionType.PureStretch:
-                    case RopeCollisionType.SlideStretch when currentSegmentLength > segmentSlideIgnoreLength:
-                        continue;
+                    continue;
+                }
+
+                ref var previousPoint = ref _particleData[i - 1];
+                var currentSegmentLength = (previousPoint.PositionCurrent - currentPoint.PositionCurrent).Length();
+                if (currentSegmentLength > segmentSlideIgnoreLength)
+                {
+                    continue;
                 }
             }
 
@@ -425,12 +433,10 @@ public partial class VerletRope : MeshInstance3D
             var collisionNormal = _rayCast.GetCollisionNormal();
             currentPoint.PositionCurrent = collisionPoint + (collisionNormal * CollisionCheckLength);
 
-            if (ropeSlide)
+            if (isRopeStretched)
             {
                 currentPoint.PositionCurrent += particleMove.Slide(collisionNormal);
             }
-
-            _particleData[i + 1] = currentPoint;
         }
     }
 

@@ -15,7 +15,7 @@ internal sealed class RopeParticleData
             data[i] = new RopeParticle();
             ref var particle = ref data[i];
             particle.Tangent = particle.Normal = particle.Binormal = Vector3.Zero;
-            particle.PositionPrevious = globalPosition + direction * segmentLength * i;
+            particle.PositionPrevious = globalPosition + (direction * segmentLength * i);
             particle.PositionCurrent = particle.PositionPrevious;
             particle.Acceleration = initialAcceleration;
             particle.IsAttached = false;
