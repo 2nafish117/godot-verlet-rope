@@ -3,6 +3,6 @@
 public enum RopeCollisionType
 {
     None,
-    PureStretch,
+    StickyStretch,
     SlideStretch
 }

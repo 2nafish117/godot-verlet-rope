@@ -407,7 +407,7 @@ public partial class VerletRope : MeshInstance3D
 
             if (isRopeStretched)
             {
-                if (RopeCollisionType == RopeCollisionType.PureStretch)
+                if (RopeCollisionType == RopeCollisionType.StickyStretch)
                 {
                     continue;
                 }
