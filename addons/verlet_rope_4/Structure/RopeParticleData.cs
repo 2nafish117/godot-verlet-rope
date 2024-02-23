@@ -1,7 +1,7 @@
 ﻿using System;
 using Godot;
 
-namespace VerletRope4;
+namespace VerletRope4.Structure;
 
 internal sealed class RopeParticleData
 {
