@@ -50,7 +50,7 @@ public partial class VerletRope : MeshInstance3D
     #region Vars Private
 
     private const string DefaultMaterialPath = "res://addons/verlet_rope_4/materials/rope_default.material";
-    private const string NoNotifierWarning = "Consider adding a VisibleOnScreenNotifier3D as a child for performance (it's bounds is automatically set at runtime)";
+    private const string NoNotifierWarning = $"Consider checking '{nameof(UseVisibleOnScreenNotifier)}' to disable rope visuals when it's not on screen for increased performance.";
     private const string CreationStampMeta = "creation_stamp";
     private const string ParticlesRangeHint = "3,300";
     private const string SimulationRangeHint = "30,265";
@@ -130,6 +130,13 @@ public partial class VerletRope : MeshInstance3D
             CreateRope();
         }
         get => _simulationParticles;
+    }
+
+    private bool _useVisibleOnScreenNotifier = true;
+    [Export] public bool UseVisibleOnScreenNotifier
+    {
+        get => _useVisibleOnScreenNotifier; 
+        set { _useVisibleOnScreenNotifier = value; UpdateConfigurationWarnings(); }
     }
 
     #endregion
@@ -214,11 +221,6 @@ public partial class VerletRope : MeshInstance3D
             : _particleData[index + 2].PositionCurrent;
 
         return (p0, p1, p2, p3);
-    }
-
-    private VisibleOnScreenNotifier3D GetFirstOrDefaultNotifier()
-    {
-        return (VisibleOnScreenNotifier3D)GetChildren().FirstOrDefault(c => c is VisibleOnScreenNotifier3D);
     }
 
     private float GetSegmentLength()
@@ -523,8 +525,7 @@ public partial class VerletRope : MeshInstance3D
 
     public override string[] _GetConfigurationWarnings()
     {
-        _visibleNotifier = GetFirstOrDefaultNotifier();
-        return _visibleNotifier == null ? new[] { NoNotifierWarning } : Array.Empty<string>();
+        return UseVisibleOnScreenNotifier ? Array.Empty<string>() : new[] { NoNotifierWarning };
     }
 
     public override void _Ready()
@@ -551,9 +552,9 @@ public partial class VerletRope : MeshInstance3D
             Enabled = false
         });
 
-        _visibleNotifier = GetFirstOrDefaultNotifier();
-        if (_visibleNotifier != null)
+        if (UseVisibleOnScreenNotifier)
         {
+            AddChild(_visibleNotifier = new VisibleOnScreenNotifier3D());
             _visibleNotifier.ScreenEntered += () => Draw = true;
             _visibleNotifier.ScreenExited += () => Draw = false;
         }
