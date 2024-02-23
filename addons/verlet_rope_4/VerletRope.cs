@@ -149,6 +149,7 @@ public partial class VerletRope : MeshInstance3D
     [Export] public int PreprocessIterations { get; set; } = 5;
     [Export] public float PreprocessDelta { get; set; } = 0.016f; 
     [Export(PropertyHint.Range, "0.0, 1.5")] public float Stiffness { get; set; } = 0.9f;
+    [Export] public bool StartSimulationFromStartPoint { get; set; } = true;
     [Export] public bool Simulate { get; set; } = true;
     [Export] public bool Draw { get; set; } = true;
     [Export] public bool StartDrawSimulationOnStart { get; set; } = true;
@@ -190,6 +191,20 @@ public partial class VerletRope : MeshInstance3D
     [Export(PropertyHint.Range, MaxSegmentStretchRangeHint)] public float MaxSegmentStretch { get; set; } = 1.1f;
     [Export(PropertyHint.Range, MaxSegmentStretchRangeHint)] public float SlideIgnoreCollisionStretch { get; set; } = 1.25f;
     [Export(PropertyHint.Layers3DPhysics)] public uint CollisionMask { get; set; } = 1;
+
+    private bool _hitFromInside = true;
+    [Export] public bool HitFromInside
+    {
+        get => _hitFromInside;
+        set { _hitFromInside = value; if (_rayCast != null) { _rayCast.HitFromInside = value; } }
+    }
+
+    private bool _hitBackFaces = true;
+    [Export] public bool HitBackFaces
+    {
+        get => _hitBackFaces;
+        set { _hitBackFaces = value; if (_rayCast != null) { _rayCast.HitBackFaces = value; } }
+    }
 
     #endregion
 
@@ -547,8 +562,8 @@ public partial class VerletRope : MeshInstance3D
         AddChild(_rayCast = new RayCast3D
         {
             CollisionMask = CollisionMask,
-            HitFromInside = true,
-            HitBackFaces = true,
+            HitFromInside = _hitFromInside,
+            HitBackFaces = _hitBackFaces,
             Enabled = false
         });
 
@@ -637,7 +652,17 @@ public partial class VerletRope : MeshInstance3D
 
     public void CreateRope()
     {
-        var endLocation = _attachEnd?.GlobalPosition ?? GlobalPosition + Vector3.Down * RopeLength;
+        var endLocation = GlobalPosition + (Vector3.Down * RopeLength);
+
+        if (_attachEnd != null)
+        {
+            endLocation = _attachEnd.GlobalPosition;
+        }
+        else if (StartSimulationFromStartPoint)
+        {
+            endLocation = GlobalPosition;
+        }
+
         var acceleration = Gravity * GravityScale;
         var segment = GetSegmentLength();
         _particleData = RopeParticleData.GenerateParticleData(endLocation, GlobalPosition, acceleration, _simulationParticles, segment);
