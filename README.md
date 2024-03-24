@@ -1,3 +1,6 @@
+# NOTE this plugin is meant for godot 3.x, and is not maintained for 4.x.
+this is a great port of the plugin to 4.x https://github.com/Tshmofen/verlet-rope-4
+
 # Godot Verlet Rope
 
 A fast implementation of verlet integration based rope physics, similar to the one seen in half life 2.
